@@ -16,6 +16,7 @@ import { formatQuickPickLabel } from '@/lib/format';
 import { buildTemplateExplanation } from '@/lib/explainTemplate';
 import { buildExplainPayload } from '@/lib/explainPayload';
 import { QuestionCard } from '@/components/QuestionCard';
+import { OneLineProfileBox } from '@/components/OneLineProfileBox';
 import { CriteriaPanel } from '@/components/CriteriaPanel';
 import { CriterionRow } from '@/components/CriterionRow';
 import { VerdictStamp } from '@/components/VerdictStamp';
@@ -73,6 +74,9 @@ export default function EligibilityCheckPage() {
   const [skippedCustom, setSkippedCustom] = useState<string[]>([]);
   const [manualQuestion, setManualQuestion] = useState<NextQuestion | null>(null);
   const [llmExplanation, setLlmExplanation] = useState<string | null>(null);
+  // Dismissed by submitting or skipping the one-line intro (8.3). Only offered on a
+  // fresh profile -- a returning citizen already has "Using what you told us before".
+  const [introDone, setIntroDone] = useState(false);
 
   // Load the one shared profile once, on mount (SPEC 3 USP #6: one profile, all schemes).
   // This runs after the server-rendered (empty-profile) markup has hydrated, so it can't
@@ -103,6 +107,7 @@ export default function EligibilityCheckPage() {
   // Early stop: once the verdict is decided or nothing is left to ask, currentQuestion
   // is null and we fall straight through to the result below -- no state needed for that.
   const showWizard = !forceResult && currentQuestion !== null;
+  const showIntro = initialized && !introDone && !hadStoredProfile && history.length === 0;
 
   const alternatives = useMemo(() => {
     if (!scheme) return [];
@@ -241,6 +246,21 @@ export default function EligibilityCheckPage() {
     setForceResult(false);
   }
 
+  function handleIntroParsed(parsed: Partial<CitizenProfile>) {
+    // Fill in what the one-liner told us; never overwrite anything already known.
+    setProfile((prev) => ({ ...parsed, ...prev }));
+    setIntroDone(true);
+  }
+
+  function handleSkipIntro() {
+    setIntroDone(true);
+  }
+
+  // ---- Intro phase (8.3): optional one-line profile, offered only on a fresh profile ----
+  if (showIntro) {
+    return <OneLineProfileBox onParsed={handleIntroParsed} onSkip={handleSkipIntro} />;
+  }
+
   // ---- Wizard phase ----
   if (showWizard && currentQuestion) {
     const matchedRule = findRuleForQuestion(scheme, currentQuestion);
@@ -271,6 +291,7 @@ export default function EligibilityCheckPage() {
     return (
       <div className="lg:mx-auto lg:grid lg:max-w-[960px] lg:grid-cols-[1fr_320px] lg:gap-6 lg:px-4 lg:py-8">
         <QuestionCard
+          key={questionText}
           questionText={questionText}
           helpText={helpText}
           sensitive={sensitive}

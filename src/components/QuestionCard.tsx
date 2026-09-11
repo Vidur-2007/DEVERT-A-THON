@@ -1,9 +1,14 @@
 'use client';
 
+import { useState } from 'react';
 import { ArrowLeft } from 'lucide-react';
-import { useT } from '@/lib/i18n/strings';
+import { useLang } from '@/lib/i18n/useLang';
+import { useT, useTf } from '@/lib/i18n/strings';
+import { useSpeechInput } from '@/lib/speech/useSpeechInput';
+import { matchSpokenAnswer } from '@/lib/speech/matchAnswer';
 import { ChoiceChips } from './ChoiceChips';
 import { NumberQuickPick } from './NumberQuickPick';
+import { MicButton } from './MicButton';
 
 interface QuestionCardProps {
   questionText: string;
@@ -19,7 +24,9 @@ interface QuestionCardProps {
   remainingLabel: string;
 }
 
-// One question per screen, huge tap targets, "I don't know" always available. SPEC.md Section 8.3.
+// One question per screen, huge tap targets, "I don't know" always available, mic on
+// every question. SPEC.md Section 8.3 and 10. Render with `key={questionText}` from the
+// caller so moving to a new question resets local state (mic, unmatched transcript) for free.
 export function QuestionCard({
   questionText,
   helpText,
@@ -34,6 +41,28 @@ export function QuestionCard({
   remainingLabel,
 }: QuestionCardProps) {
   const t = useT();
+  const tf = useTf();
+  const { lang } = useLang();
+  const [unmatched, setUnmatched] = useState<string | null>(null);
+
+  function handleFinalTranscript(text: string) {
+    const result = matchSpokenAnswer(text, type, options);
+    if (result.matched) {
+      setUnmatched(null);
+      onAnswer(result.value);
+    } else {
+      setUnmatched(text);
+    }
+  }
+
+  const {
+    supported: micSupported,
+    listening,
+    transcript,
+    start,
+    stop,
+    error: micError,
+  } = useSpeechInput(lang, handleFinalTranscript);
 
   return (
     <div className="mx-auto max-w-[560px] px-4 py-8">
@@ -48,9 +77,31 @@ export function QuestionCard({
       )}
 
       <p className="mb-2 text-sm text-slate">{remainingLabel}</p>
-      <h1 className="text-2xl font-semibold text-ink">{questionText}</h1>
+      <div className="flex items-start justify-between gap-3">
+        <h1 className="text-2xl font-semibold text-ink">{questionText}</h1>
+        {micSupported && (
+          <MicButton listening={listening} onClick={() => (listening ? stop() : start())} />
+        )}
+      </div>
       {helpText && <p className="mt-1 text-sm text-slate">{helpText}</p>}
       {sensitive && <p className="mt-1 text-xs text-slate">{t('staysOnYourPhone')}</p>}
+
+      {listening && (
+        <p className="mt-3 text-sm text-marigold">
+          {transcript ? tf('weHeard', { transcript }) : t('micListening')}
+        </p>
+      )}
+      {!listening && unmatched && (
+        <div className="mt-3 rounded-lg bg-haldi-bg p-3 text-sm text-haldi" role="status">
+          <p>{tf('weHeard', { transcript: unmatched })}</p>
+          <p className="mt-1">{t('didntUnderstand')}</p>
+        </div>
+      )}
+      {!listening && !unmatched && micError && (
+        <p className="mt-3 text-sm text-haldi" role="status">
+          {t('voiceInputError')}
+        </p>
+      )}
 
       <div className="mt-6">
         {type === 'boolean' && (

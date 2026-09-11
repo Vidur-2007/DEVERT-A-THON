@@ -414,6 +414,61 @@ export const STRINGS = {
     te: 'ప్రస్తుతం అనువాదం అందుబాటులో లేదు — ఆంగ్లంలో చూపిస్తున్నాము.',
     ta: 'தற்போது மொழிபெயர்ப்பு கிடைக்கவில்லை — ஆங்கிலத்தில் காட்டுகிறோம்.',
   },
+
+  // Voice (Section 10)
+  micTapToSpeak: {
+    en: 'Tap to speak',
+    hi: 'बोलने के लिए टैप करें',
+    te: 'మాట్లాడటానికి నొక్కండి',
+    ta: 'பேச தட்டவும்',
+  },
+  micListening: { en: 'Listening…', hi: 'सुन रहे हैं…', te: 'వింటోంది…', ta: 'கேட்கிறது…' },
+  weHeard: {
+    en: 'We heard: "{transcript}"',
+    hi: 'हमने सुना: "{transcript}"',
+    te: 'మేము విన్నాము: "{transcript}"',
+    ta: 'நாங்கள் கேட்டோம்: "{transcript}"',
+  },
+  didntUnderstand: {
+    en: "We couldn't match that — please tap an option instead.",
+    hi: 'हम इसे समझ नहीं पाए — कृपया एक विकल्प टैप करें।',
+    te: 'మేము దాన్ని సరిపోల్చలేకపోయాము — దయచేసి ఒక ఎంపికను నొక్కండి.',
+    ta: 'எங்களால் அதைப் பொருத்த முடியவில்லை — தயவு செய்து ஒரு விருப்பத்தைத் தட்டவும்.',
+  },
+  readAloud: { en: 'Read aloud', hi: 'ज़ोर से पढ़ें', te: 'బిగ్గరగా చదవండి', ta: 'சத்தமாகப் படியுங்கள்' },
+  stopReading: { en: 'Stop', hi: 'रोकें', te: 'ఆపు', ta: 'நிறுத்து' },
+
+  // One-line profile box (8.3)
+  tellUsAboutYourself: {
+    en: 'Tell us about yourself in one line',
+    hi: 'अपने बारे में एक पंक्ति में बताएं',
+    te: 'మీ గురించి ఒక్క వాక్యంలో చెప్పండి',
+    ta: 'உங்களைப் பற்றி ஒரே வரியில் சொல்லுங்கள்',
+  },
+  oneLinePlaceholder: {
+    en: "e.g. I'm a 45-year-old farmer with 2 acres",
+    hi: 'उदाहरण: मैं 45 साल का किसान हूं, मेरे पास 2 एकड़ जमीन है',
+    te: 'ఉదా: నేను 45 ఏళ్ల రైతుని, నాకు 2 ఎకరాల భూమి ఉంది',
+    ta: 'எ.கா: நான் 45 வயது விவசாயி, என்னிடம் 2 ஏக்கர் நிலம் உள்ளது',
+  },
+  skipAskMeQuestions: {
+    en: 'Skip, ask me questions',
+    hi: 'छोड़ें, मुझसे सवाल पूछें',
+    te: 'వదిలేయండి, నన్ను ప్రశ్నలు అడగండి',
+    ta: 'தவிர்க்கவும், என்னிடம் கேள்விகள் கேளுங்கள்',
+  },
+  understandingYou: {
+    en: 'Understanding what you told us…',
+    hi: 'आपने जो बताया उसे समझ रहे हैं…',
+    te: 'మీరు చెప్పినదాన్ని అర్థం చేసుకుంటున్నాము…',
+    ta: 'நீங்கள் சொன்னதைப் புரிந்துகொள்கிறோம்…',
+  },
+  voiceInputError: {
+    en: "Voice input isn't available right now — please type or tap instead.",
+    hi: 'अभी आवाज़ से इनपुट उपलब्ध नहीं है — कृपया टाइप करें या टैप करें।',
+    te: 'ప్రస్తుతం వాయిస్ ఇన్‌పుట్ అందుబాటులో లేదు — దయచేసి టైప్ చేయండి లేదా నొక్కండి.',
+    ta: 'தற்போது குரல் உள்ளீடு கிடைக்கவில்லை — தட்டச்சு செய்யவும் அல்லது தட்டவும்.',
+  },
 } satisfies Record<string, Record<Lang, string>>;
 
 export type StringKey = keyof typeof STRINGS;
