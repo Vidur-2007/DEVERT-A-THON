@@ -42,7 +42,7 @@ export function DocChecklist({ documents }: DocChecklistProps) {
               type="button"
               onClick={() => setHave((h) => ({ ...h, [i]: !h[i] }))}
               aria-pressed={Boolean(have[i])}
-              className={`min-h-[40px] flex-none self-start rounded-full px-4 text-sm font-medium transition sm:self-auto ${
+              className={`no-print min-h-[40px] flex-none self-start rounded-full px-4 text-sm font-medium transition sm:self-auto ${
                 have[i] ? 'bg-leaf text-white' : 'border border-ink/15 text-ink hover:border-leaf'
               }`}
             >

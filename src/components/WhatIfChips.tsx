@@ -36,7 +36,7 @@ export function WhatIfChips({ scheme, profile, suggestions, labelFor }: WhatIfCh
   }
 
   return (
-    <section className="mb-6">
+    <section className="no-print mb-6">
       <h2 className="mb-3 text-xl font-semibold text-ink">{t('whatIfHeading')}</h2>
       <div className="flex flex-wrap gap-3">
         {suggestions.map((suggestion) => {

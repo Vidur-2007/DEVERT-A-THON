@@ -103,3 +103,23 @@ h6 {
     scroll-behavior: auto !important;
   }
 }
+
+/* Print stylesheet (ShareBar "Print / Save as PDF", SPEC 8.4 item 8). Interactive-only
+   elements carry .no-print; plain black-on-white otherwise, no shadows that only make
+   sense on a screen. A dedicated class + !important (rather than Tailwind's print:hidden)
+   because print:hidden can lose the cascade to an unprefixed display utility (e.g. flex)
+   on the same element -- Tailwind doesn't guarantee variant utilities sort after their
+   unprefixed equivalents in the generated stylesheet. */
+@media print {
+  .no-print {
+    display: none !important;
+  }
+  body {
+    background: #fff;
+    color: #000;
+  }
+  .shadow-sm,
+  .shadow-xl {
+    box-shadow: none !important;
+  }
+}

@@ -60,7 +60,7 @@ export function SpeakButton({ text }: SpeakButtonProps) {
       type="button"
       onClick={handleClick}
       aria-pressed={speaking}
-      className="inline-flex flex-none items-center gap-1.5 rounded-full border border-ink/15 bg-white px-3 py-1.5 text-sm font-medium text-ink transition hover:border-marigold focus-visible:outline-none"
+      className="no-print inline-flex flex-none items-center gap-1.5 rounded-full border border-ink/15 bg-white px-3 py-1.5 text-sm font-medium text-ink transition hover:border-marigold focus-visible:outline-none"
     >
       <Volume2 size={16} aria-hidden="true" className={speaking ? 'text-marigold' : ''} />
       {speaking ? t('stopReading') : t('readAloud')}

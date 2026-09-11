@@ -26,7 +26,9 @@ import { AltSchemeCard } from '@/components/AltSchemeCard';
 import { Disclaimer } from '@/components/Disclaimer';
 import { SpeakButton } from '@/components/SpeakButton';
 import { WhatIfChips } from '@/components/WhatIfChips';
+import { ShareBar } from '@/components/ShareBar';
 import { buildWhatIfSuggestion, type WhatIfSuggestion } from '@/lib/whatIf';
+import { VERDICT_META } from '@/lib/verdictMeta';
 
 type HistoryEntry =
   | { type: 'answer-field'; field: FieldKey }
@@ -461,6 +463,14 @@ export default function EligibilityCheckPage() {
           </div>
         </section>
       )}
+
+      {/* 8. Share bar */}
+      <ShareBar
+        schemeName={scheme.name}
+        oneLiner={translatedSummary.oneLiner}
+        verdictLabel={t(VERDICT_META[evaluation.verdict].labelKey)}
+        onStartAgain={handleEditProfile}
+      />
 
       {/* 9. Disclaimer -- always visible */}
       <Disclaimer />

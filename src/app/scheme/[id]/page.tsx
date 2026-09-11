@@ -171,7 +171,7 @@ export default function SchemeExplainerPage() {
       )}
 
       {/* 8. Sticky bottom CTA */}
-      <div className="fixed inset-x-0 bottom-0 z-40 border-t border-ink/10 bg-paper/95 p-4 backdrop-blur">
+      <div className="no-print fixed inset-x-0 bottom-0 z-40 border-t border-ink/10 bg-paper/95 p-4 backdrop-blur">
         <div className="mx-auto max-w-[720px]">
           <Link
             href={`/scheme/${scheme.id}/check`}

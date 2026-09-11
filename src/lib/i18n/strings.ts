@@ -479,6 +479,32 @@ export const STRINGS = {
     ta: 'முயற்சிக்கவும்: {value}',
   },
   whatIfResult: { en: '→ {verdict}', hi: '→ {verdict}', te: '→ {verdict}', ta: '→ {verdict}' },
+
+  // Share bar (8.4 item 8)
+  shareOnWhatsApp: {
+    en: 'Share on WhatsApp',
+    hi: 'व्हाट्सएप पर शेयर करें',
+    te: 'వాట్సాప్‌లో షేర్ చేయండి',
+    ta: 'வாட்ஸ்அப்பில் பகிரவும்',
+  },
+  printSaveAsPdf: {
+    en: 'Print / Save as PDF',
+    hi: 'प्रिंट करें / PDF के रूप में सहेजें',
+    te: 'ప్రింట్ చేయండి / PDFగా సేవ్ చేయండి',
+    ta: 'அச்சிடவும் / PDFஆக சேமிக்கவும்',
+  },
+  startAgain: {
+    en: 'Start again',
+    hi: 'फिर से शुरू करें',
+    te: 'మళ్లీ ప్రారంభించండి',
+    ta: 'மீண்டும் தொடங்கவும்',
+  },
+  shareSummary: {
+    en: '{scheme}: {verdict}. {oneLiner} Check for yourself with Yojana Saathi: {url}',
+    hi: '{scheme}: {verdict}। {oneLiner} योजना साथी के साथ खुद जांचें: {url}',
+    te: '{scheme}: {verdict}. {oneLiner} యోజన సాథితో మీరే తనిఖీ చేసుకోండి: {url}',
+    ta: '{scheme}: {verdict}. {oneLiner} யோஜனா சாத்தியுடன் நீங்களே சரிபார்க்கவும்: {url}',
+  },
 } satisfies Record<string, Record<Lang, string>>;
 
 export type StringKey = keyof typeof STRINGS;
