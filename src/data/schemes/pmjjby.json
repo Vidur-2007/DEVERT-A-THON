@@ -1,0 +1,73 @@
+{
+  "id": "pmjjby",
+  "name": "Pradhan Mantri Jeevan Jyoti Bima Yojana (PMJJBY)",
+  "ministry": "Ministry of Finance (Department of Financial Services)",
+  "level": "central",
+  "tags": ["insurance"],
+  "summary": {
+    "oneLiner": "₹2 lakh life insurance cover for a small yearly premium.",
+    "whatIsIt": "PM Jeevan Jyoti Bima Yojana is a low-cost life insurance scheme. If you are between 18 and 50 years old and have a bank account, you can join every year. If the insured person dies for any reason, their family receives ₹2 lakh. A small premium is automatically deducted from your bank account each year.",
+    "benefits": [
+      { "text": "Life insurance cover paid to your family if something happens to you", "amount": "₹2,00,000" }
+    ],
+    "whoCanApply": ["Your age is between 18 and 50", "You have a bank account"],
+    "notFor": [],
+    "documents": [
+      { "name": "Aadhaar card", "mandatory": true },
+      { "name": "Bank account", "mandatory": true },
+      { "name": "Nominee details", "mandatory": true, "why": "So your family can receive the claim" }
+    ],
+    "howToApply": [
+      { "title": "Visit or contact your bank", "detail": "Ask for the PM Jeevan Jyoti Bima Yojana enrolment form." },
+      { "title": "Give your consent for auto-debit", "detail": "The yearly premium will be deducted automatically from your account." },
+      { "title": "Renew every year", "detail": "Cover continues automatically each year unless you opt out." }
+    ],
+    "applyMode": "both",
+    "officialUrl": "https://jansuraksha.gov.in",
+    "helpline": "1800-180-1111"
+  },
+  "eligibility": [
+    {
+      "id": "g1",
+      "logic": "ALL",
+      "label": "Basic eligibility",
+      "rules": [
+        {
+          "id": "r1",
+          "field": "age",
+          "operator": "between",
+          "value": 18,
+          "valueMax": 50,
+          "label": "Your age is between 18 and 50",
+          "sourceQuote": "Any individual having a bank account, aged between 18 and 50 years, who gives consent to join and enable auto-debit, is eligible.",
+          "confidence": 0.9,
+          "verified": false
+        },
+        {
+          "id": "r2",
+          "field": "hasBankAccount",
+          "operator": "is_true",
+          "label": "You have a bank account",
+          "sourceQuote": "A savings bank account is required to join the scheme and the premium is auto-debited from it.",
+          "confidence": 0.9,
+          "verified": false
+        }
+      ]
+    }
+  ],
+  "exclusions": [],
+  "jargon": [
+    { "term": "premium", "meaning": "The amount you pay to keep your insurance cover active." },
+    { "term": "nominee", "meaning": "The person you choose to receive the money if something happens to you." }
+  ],
+  "documentGaps": [
+    "The exact current premium amount is not stated here and should be checked with your bank.",
+    "The document does not mention an income limit."
+  ],
+  "source": {
+    "kind": "seed",
+    "title": "PM Jeevan Jyoti Bima Yojana Scheme Details",
+    "extractedAt": "2024-01-01T00:00:00.000Z",
+    "wordCount": 900
+  }
+}

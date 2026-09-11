@@ -1,0 +1,80 @@
+{
+  "id": "pm-svanidhi",
+  "name": "PM Street Vendor's AtmaNirbhar Nidhi (PM SVANidhi)",
+  "ministry": "Ministry of Housing and Urban Affairs",
+  "level": "central",
+  "tags": ["loan"],
+  "summary": {
+    "oneLiner": "Collateral-free working capital loans for street vendors, starting at ₹10,000.",
+    "whatIsIt": "PM SVANidhi gives street vendors small loans to restock their business, without needing any collateral. You must be a street vendor with a vending certificate or letter of recommendation from your local body. Repay your first loan on time and you can apply for a bigger one next, along with an interest subsidy and cashback for digital payments.",
+    "benefits": [
+      { "text": "Collateral-free working capital loan, first tranche", "amount": "₹10,000" },
+      { "text": "Interest subsidy on timely repayment, plus cashback for digital payments" }
+    ],
+    "whoCanApply": ["You are a street vendor", "You have a vending certificate or letter of recommendation"],
+    "notFor": [],
+    "documents": [
+      { "name": "Aadhaar card", "mandatory": true },
+      { "name": "Vending certificate or letter of recommendation (LOR)", "mandatory": true },
+      { "name": "Bank account", "mandatory": true }
+    ],
+    "howToApply": [
+      { "title": "Apply through the PM SVANidhi portal or app", "detail": "Register with your Aadhaar and vending certificate or LOR details." },
+      { "title": "Get your loan sanctioned by a lender", "detail": "Banks, NBFCs, or micro-finance institutions process and disburse the loan." },
+      { "title": "Repay on time to unlock bigger loans", "detail": "Timely repayment makes you eligible for the next, larger loan tranche." }
+    ],
+    "applyMode": "both",
+    "officialUrl": "https://pmsvanidhi.mohua.gov.in",
+    "helpline": "1800-111-979"
+  },
+  "eligibility": [
+    {
+      "id": "g1",
+      "logic": "ALL",
+      "label": "Basic eligibility",
+      "rules": [
+        {
+          "id": "r1",
+          "field": "occupation",
+          "operator": "eq",
+          "value": "street_vendor",
+          "label": "You are a street vendor",
+          "sourceQuote": "Street vendors in possession of a Certificate of Vending or Identity Card issued by Urban Local Bodies (ULBs) are eligible.",
+          "confidence": 0.85,
+          "verified": false
+        },
+        {
+          "id": "r2",
+          "field": "custom",
+          "customKey": "has_vending_certificate_or_lor",
+          "customQuestion": {
+            "en": "Do you have a vending certificate or a letter of recommendation from your local body?",
+            "hi": "क्या आपके पास वेंडिंग सर्टिफिकेट या स्थानीय निकाय से सिफारिश पत्र है?",
+            "te": "మీ వద్ద వెండింగ్ సర్టిఫికేట్ లేదా స్థానిక సంస్థ నుండి సిఫార్సు లేఖ ఉందా?",
+            "ta": "உங்களிடம் விற்பனை சான்றிதழ் அல்லது உள்ளூர் அமைப்பின் பரிந்துரைக் கடிதம் உள்ளதா?"
+          },
+          "operator": "is_true",
+          "label": "You have a vending certificate or letter of recommendation",
+          "sourceQuote": "Vendors who have not been formally identified, or who do not have a Certificate of Vending, may obtain a Letter of Recommendation (LOR) from the ULB.",
+          "confidence": 0.8,
+          "verified": false
+        }
+      ]
+    }
+  ],
+  "exclusions": [],
+  "jargon": [
+    { "term": "collateral-free", "meaning": "No property or valuables need to be pledged to get the loan." },
+    { "term": "letter of recommendation (LOR)", "meaning": "A letter from your local municipal body confirming you are a recognised vendor." },
+    { "term": "tranche", "meaning": "One instalment of a loan given in stages as earlier ones are repaid." }
+  ],
+  "documentGaps": [
+    "The exact list of documents accepted as proof of vending in each city is not detailed here."
+  ],
+  "source": {
+    "kind": "seed",
+    "title": "PM SVANidhi Scheme Details",
+    "extractedAt": "2024-01-01T00:00:00.000Z",
+    "wordCount": 1300
+  }
+}

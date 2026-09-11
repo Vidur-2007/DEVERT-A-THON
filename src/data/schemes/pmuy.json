@@ -1,0 +1,128 @@
+{
+  "id": "pmuy",
+  "name": "Pradhan Mantri Ujjwala Yojana (PMUY)",
+  "ministry": "Ministry of Petroleum and Natural Gas",
+  "level": "central",
+  "tags": ["women"],
+  "summary": {
+    "oneLiner": "A free LPG gas connection for women from poor households.",
+    "whatIsIt": "PM Ujjwala Yojana gives free LPG gas connections to women so they don't have to cook with firewood or coal. You must be a woman, at least 18 years old, and not already have an LPG connection. Your household should also be identified as poor, for example through a ration card or SC/ST status.",
+    "benefits": [
+      { "text": "Free LPG gas connection with first refill and stove support" }
+    ],
+    "whoCanApply": [
+      "You are a woman aged 18 or above",
+      "You do not already have an LPG connection",
+      "Your household is identified as poor (ration card, SC/ST status, or similar)"
+    ],
+    "notFor": [],
+    "documents": [
+      { "name": "Aadhaar card", "mandatory": true },
+      { "name": "Ration card or BPL proof", "mandatory": false, "why": "Used to confirm your household is eligible" },
+      { "name": "Bank account details", "mandatory": true }
+    ],
+    "howToApply": [
+      { "title": "Visit a nearby LPG distributor", "detail": "Go to any Indane, Bharat Gas or HP Gas distributor near you." },
+      { "title": "Fill the Ujjwala form", "detail": "Submit the form with your Aadhaar and household proof." },
+      { "title": "Get your connection", "detail": "Once approved, you receive a free connection, first cylinder and stove support." }
+    ],
+    "applyMode": "offline",
+    "officialUrl": "https://pmuy.gov.in",
+    "helpline": "1800-266-6696"
+  },
+  "eligibility": [
+    {
+      "id": "g1",
+      "logic": "ALL",
+      "label": "Basic eligibility",
+      "rules": [
+        {
+          "id": "r1",
+          "field": "gender",
+          "operator": "eq",
+          "value": "female",
+          "label": "You are a woman aged 18 or above",
+          "sourceQuote": "The scheme is applicable for adult women belonging to poor households.",
+          "confidence": 0.85,
+          "verified": false
+        },
+        {
+          "id": "r2",
+          "field": "age",
+          "operator": "gte",
+          "value": 18,
+          "label": "You are a woman aged 18 or above",
+          "sourceQuote": "The applicant should be an adult woman, 18 years of age or above.",
+          "confidence": 0.85,
+          "verified": false
+        },
+        {
+          "id": "r3",
+          "field": "hasLpgConnection",
+          "operator": "is_false",
+          "label": "You do not already have an LPG connection",
+          "sourceQuote": "The applicant's household should not already own an LPG connection.",
+          "confidence": 0.85,
+          "verified": false
+        }
+      ]
+    },
+    {
+      "id": "g2",
+      "logic": "ANY",
+      "label": "Belongs to a poor household",
+      "rules": [
+        {
+          "id": "r4",
+          "field": "rationCardType",
+          "operator": "in",
+          "value": ["aay", "phh", "bpl"],
+          "label": "Your household is identified as poor (ration card, SC/ST status, or similar)",
+          "sourceQuote": "Households covered under the Socio Economic Caste Census (SECC), or holding Antyodaya/priority ration cards, are eligible.",
+          "confidence": 0.8,
+          "verified": false
+        },
+        {
+          "id": "r5",
+          "field": "socialCategory",
+          "operator": "in",
+          "value": ["sc", "st"],
+          "label": "Your household is identified as poor (ration card, SC/ST status, or similar)",
+          "sourceQuote": "Women belonging to Scheduled Caste (SC) or Scheduled Tribe (ST) households are eligible under the scheme.",
+          "confidence": 0.8,
+          "verified": false
+        },
+        {
+          "id": "r6",
+          "field": "custom",
+          "customKey": "poor_household_declaration",
+          "customQuestion": {
+            "en": "Can you give a self-declaration that your household is poor (BPL-equivalent)?",
+            "hi": "क्या आप स्व-घोषणा दे सकते हैं कि आपका परिवार गरीब (बीपीएल के समान) है?",
+            "te": "మీ కుటుంబం పేదది (బీపీఎల్‌కు సమానం) అని మీరు స్వీయ ప్రకటన ఇవ్వగలరా?",
+            "ta": "உங்கள் குடும்பம் ஏழ்மையானது (பிபிஎல் சமமானது) என்று நீங்கள் சுய அறிவிப்பு அளிக்க முடியுமா?"
+          },
+          "operator": "is_true",
+          "label": "Your household is identified as poor (ration card, SC/ST status, or similar)",
+          "sourceQuote": "Eligible households can also be identified through a self-declaration where SECC data is unavailable.",
+          "confidence": 0.75,
+          "verified": false
+        }
+      ]
+    }
+  ],
+  "exclusions": [],
+  "jargon": [
+    { "term": "LPG", "meaning": "Cooking gas that comes in a cylinder, used instead of firewood or coal." },
+    { "term": "distributor", "meaning": "The local shop or agency that supplies gas cylinders in your area." }
+  ],
+  "documentGaps": [
+    "The exact list of accepted 'poor household' proofs beyond ration card and SC/ST status is not fully detailed here."
+  ],
+  "source": {
+    "kind": "seed",
+    "title": "Pradhan Mantri Ujjwala Yojana Scheme Details",
+    "extractedAt": "2024-01-01T00:00:00.000Z",
+    "wordCount": 1100
+  }
+}

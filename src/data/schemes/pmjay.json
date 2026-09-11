@@ -1,0 +1,92 @@
+{
+  "id": "pmjay",
+  "name": "Ayushman Bharat – Pradhan Mantri Jan Arogya Yojana (PM-JAY)",
+  "ministry": "Ministry of Health and Family Welfare (National Health Authority)",
+  "level": "central",
+  "tags": ["health"],
+  "summary": {
+    "oneLiner": "Cashless hospital treatment up to ₹5 lakh a year for your family.",
+    "whatIsIt": "Ayushman Bharat PM-JAY pays for hospital treatment so poor and vulnerable families don't have to worry about medical bills. If your family is on the official Ayushman beneficiary list, you hold an Antyodaya (AAY) ration card, or you are 70 years or older, you can get cashless treatment worth up to ₹5 lakh per family every year at listed hospitals.",
+    "benefits": [
+      { "text": "Cashless treatment at listed government and private hospitals", "amount": "₹5,00,000 per family per year" }
+    ],
+    "whoCanApply": [
+      "Your family is on the official Ayushman beneficiary list",
+      "You hold an Antyodaya (AAY) ration card",
+      "You are aged 70 or above"
+    ],
+    "notFor": [],
+    "documents": [
+      { "name": "Aadhaar card", "mandatory": true },
+      { "name": "Ration card (if applicable)", "mandatory": false },
+      { "name": "Ayushman card / PM-JAY ID", "mandatory": false, "why": "Check and download at beneficiary.nha.gov.in" }
+    ],
+    "howToApply": [
+      { "title": "Check your eligibility", "detail": "Visit beneficiary.nha.gov.in or call the helpline to see if your family is listed." },
+      { "title": "Get your Ayushman card", "detail": "Visit a Common Service Centre or empanelled hospital with your Aadhaar to get your card made." },
+      { "title": "Use it at a listed hospital", "detail": "Show your Ayushman card at any empanelled hospital for cashless treatment." }
+    ],
+    "applyMode": "both",
+    "officialUrl": "https://beneficiary.nha.gov.in",
+    "helpline": "14555"
+  },
+  "eligibility": [
+    {
+      "id": "g1",
+      "logic": "ANY",
+      "label": "Belongs to one of these groups",
+      "rules": [
+        {
+          "id": "r1",
+          "field": "age",
+          "operator": "gte",
+          "value": 70,
+          "label": "You are aged 70 or above",
+          "sourceQuote": "All senior citizens aged 70 years and above are eligible under Ayushman Bharat PM-JAY, irrespective of income.",
+          "confidence": 0.85,
+          "verified": false
+        },
+        {
+          "id": "r2",
+          "field": "custom",
+          "customKey": "is_listed_family",
+          "customQuestion": {
+            "en": "Is your family on the Ayushman beneficiary list? You can check at beneficiary.nha.gov.in",
+            "hi": "क्या आपका परिवार आयुष्मान सूची में है? beneficiary.nha.gov.in पर जांचें",
+            "te": "మీ కుటుంబం ఆయుష్మాన్ జాబితాలో ఉందా? beneficiary.nha.gov.in లో తనిఖీ చేయండి",
+            "ta": "உங்கள் குடும்பம் ஆயுஷ்மான் பட்டியலில் உள்ளதா? beneficiary.nha.gov.in இல் சரிபார்க்கவும்"
+          },
+          "operator": "is_true",
+          "label": "Your family is on the official Ayushman beneficiary list",
+          "sourceQuote": "Families identified based on the deprivation and occupational criteria of the Socio-Economic Caste Census (SECC) 2011 are eligible beneficiaries.",
+          "confidence": 0.8,
+          "verified": false
+        },
+        {
+          "id": "r3",
+          "field": "rationCardType",
+          "operator": "in",
+          "value": ["aay"],
+          "label": "You hold an Antyodaya (AAY) ration card",
+          "sourceQuote": "All Antyodaya Anna Yojana (AAY) card holding households are automatically included as eligible beneficiaries.",
+          "confidence": 0.85,
+          "verified": false
+        }
+      ]
+    }
+  ],
+  "exclusions": [],
+  "jargon": [
+    { "term": "cashless treatment", "meaning": "Hospital care where you do not pay directly — the government settles the bill." },
+    { "term": "empanelled hospital", "meaning": "A hospital officially registered to give treatment under this scheme." }
+  ],
+  "documentGaps": [
+    "The full SECC-based beneficiary list criteria are not detailed in this document; check the official portal to confirm your family's listing."
+  ],
+  "source": {
+    "kind": "seed",
+    "title": "Ayushman Bharat PM-JAY Scheme Details",
+    "extractedAt": "2024-01-01T00:00:00.000Z",
+    "wordCount": 1600
+  }
+}

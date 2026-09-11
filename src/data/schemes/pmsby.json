@@ -1,0 +1,73 @@
+{
+  "id": "pmsby",
+  "name": "Pradhan Mantri Suraksha Bima Yojana (PMSBY)",
+  "ministry": "Ministry of Finance (Department of Financial Services)",
+  "level": "central",
+  "tags": ["insurance"],
+  "summary": {
+    "oneLiner": "Accident insurance cover of up to ₹2 lakh for about ₹20 a year.",
+    "whatIsIt": "PM Suraksha Bima Yojana protects you against accidents. If you are between 18 and 70 years old and have a bank account, you can join every year. If an accident causes death or full disability, your family gets ₹2 lakh. For partial disability, you get ₹1 lakh. The yearly premium is very small and auto-debited.",
+    "benefits": [
+      { "text": "Accident cover: death or full disability", "amount": "₹2,00,000" },
+      { "text": "Accident cover: partial disability", "amount": "₹1,00,000" }
+    ],
+    "whoCanApply": ["Your age is between 18 and 70", "You have a bank account"],
+    "notFor": [],
+    "documents": [
+      { "name": "Aadhaar card", "mandatory": true },
+      { "name": "Bank account", "mandatory": true },
+      { "name": "Nominee details", "mandatory": true }
+    ],
+    "howToApply": [
+      { "title": "Visit or contact your bank", "detail": "Ask for the PM Suraksha Bima Yojana enrolment form." },
+      { "title": "Give your consent for auto-debit", "detail": "The yearly premium will be deducted automatically from your account." },
+      { "title": "Renew every year", "detail": "Cover continues automatically each year unless you opt out." }
+    ],
+    "applyMode": "both",
+    "officialUrl": "https://jansuraksha.gov.in",
+    "helpline": "1800-180-1111"
+  },
+  "eligibility": [
+    {
+      "id": "g1",
+      "logic": "ALL",
+      "label": "Basic eligibility",
+      "rules": [
+        {
+          "id": "r1",
+          "field": "age",
+          "operator": "between",
+          "value": 18,
+          "valueMax": 70,
+          "label": "Your age is between 18 and 70",
+          "sourceQuote": "Any individual with a bank account, aged between 18 and 70 years, who gives consent to auto-debit, is eligible.",
+          "confidence": 0.9,
+          "verified": false
+        },
+        {
+          "id": "r2",
+          "field": "hasBankAccount",
+          "operator": "is_true",
+          "label": "You have a bank account",
+          "sourceQuote": "A savings bank account is required to join the scheme and the premium is auto-debited from it.",
+          "confidence": 0.9,
+          "verified": false
+        }
+      ]
+    }
+  ],
+  "exclusions": [],
+  "jargon": [
+    { "term": "accident cover", "meaning": "Money paid if you are injured or die because of an accident." },
+    { "term": "partial disability", "meaning": "A permanent injury that affects part of your body, like losing an eye or a hand." }
+  ],
+  "documentGaps": [
+    "The exact current premium amount is not stated here and should be checked with your bank."
+  ],
+  "source": {
+    "kind": "seed",
+    "title": "PM Suraksha Bima Yojana Scheme Details",
+    "extractedAt": "2024-01-01T00:00:00.000Z",
+    "wordCount": 850
+  }
+}

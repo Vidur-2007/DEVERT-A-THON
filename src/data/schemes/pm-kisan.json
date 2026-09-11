@@ -1,0 +1,122 @@
+{
+  "id": "pm-kisan",
+  "name": "PM-KISAN (Pradhan Mantri Kisan Samman Nidhi)",
+  "ministry": "Ministry of Agriculture and Farmers Welfare",
+  "level": "central",
+  "tags": ["farmers"],
+  "summary": {
+    "oneLiner": "₹6,000 a year for farmer families who own agricultural land.",
+    "whatIsIt": "PM-KISAN gives money to farming families who own land. If you qualify, the government sends ₹2,000 to your bank account every four months — ₹6,000 a year in total. You never have to repay it. Income tax payers, government employees, pensioners above a limit, and professionals like doctors cannot get this benefit.",
+    "benefits": [
+      { "text": "Direct cash support paid straight to your bank account, no middlemen", "amount": "₹6,000/year (₹2,000 every 4 months)" }
+    ],
+    "whoCanApply": ["You own farming land in your family's name"],
+    "notFor": [
+      "Income tax payers",
+      "Anyone with a government employee in the family",
+      "Pensioners getting ₹10,000 or more a month",
+      "Doctors, engineers, lawyers and similar registered professionals",
+      "Institutional landholders (land owned by a company or trust, not a person)"
+    ],
+    "documents": [
+      { "name": "Aadhaar card", "mandatory": true },
+      { "name": "Bank account (linked to Aadhaar, for e-KYC)", "mandatory": true },
+      { "name": "Land ownership papers", "mandatory": true }
+    ],
+    "howToApply": [
+      { "title": "Complete e-KYC", "detail": "Do e-KYC on the PM-KISAN portal or at your nearest Common Service Centre." },
+      { "title": "Register with your land records", "detail": "Submit your land ownership papers and bank details to your local agriculture officer or online." },
+      { "title": "Track your payment", "detail": "Check your instalment status on the PM-KISAN website using your Aadhaar number." }
+    ],
+    "applyMode": "both",
+    "officialUrl": "https://pmkisan.gov.in",
+    "helpline": "155261"
+  },
+  "eligibility": [
+    {
+      "id": "g1",
+      "logic": "ALL",
+      "label": "Basic eligibility",
+      "rules": [
+        {
+          "id": "r1",
+          "field": "ownsAgriLand",
+          "operator": "is_true",
+          "label": "You own farming land in your family's name",
+          "sourceQuote": "All landholder farmer families, which have cultivable landholding in their names, are eligible to get benefit under the scheme.",
+          "confidence": 0.9,
+          "verified": false
+        }
+      ]
+    }
+  ],
+  "exclusions": [
+    {
+      "id": "x1",
+      "field": "isIncomeTaxPayer",
+      "operator": "is_true",
+      "label": "Income tax payers",
+      "sourceQuote": "Any person who paid income tax in the last assessment year.",
+      "confidence": 0.9,
+      "verified": false
+    },
+    {
+      "id": "x2",
+      "field": "isGovtEmployeeInFamily",
+      "operator": "is_true",
+      "label": "Anyone with a government employee in the family",
+      "sourceQuote": "All serving or retired officers and employees of Central/State Government Ministries/Offices/Departments (except Group D/Class IV/Multi Tasking Staff employees).",
+      "confidence": 0.85,
+      "verified": false
+    },
+    {
+      "id": "x3",
+      "field": "monthlyPension",
+      "operator": "gte",
+      "value": 10000,
+      "label": "Pensioners getting ₹10,000 or more a month",
+      "sourceQuote": "Retired pensioners whose monthly pension is Rs. 10,000 or more (excluding Multi Tasking Staff / Class IV / Group D employees).",
+      "confidence": 0.85,
+      "verified": false
+    },
+    {
+      "id": "x4",
+      "field": "isProfessional",
+      "operator": "is_true",
+      "label": "Doctors, engineers, lawyers and similar registered professionals",
+      "sourceQuote": "Professionals like Doctors, Engineers, Lawyers, Chartered Accountants and Architects registered with professional bodies and carrying out profession by undertaking practices.",
+      "confidence": 0.85,
+      "verified": false
+    },
+    {
+      "id": "x5",
+      "field": "custom",
+      "customKey": "is_institutional_landholder",
+      "customQuestion": {
+        "en": "Is your farmland owned by an institution (company, trust or similar), not by you or your family personally?",
+        "hi": "क्या आपकी खेती की जमीन किसी संस्था (कंपनी, ट्रस्ट आदि) के नाम पर है, न कि आपके या आपके परिवार के नाम पर?",
+        "te": "మీ వ్యవసాయ భూమి మీది లేదా మీ కుటుంబానిది కాకుండా ఒక సంస్థ (కంపెనీ, ట్రస్ట్ వంటివి) పేరిట ఉందా?",
+        "ta": "உங்கள் விவசாய நிலம் நீங்கள் அல்லது உங்கள் குடும்பத்தின் பெயரில் இல்லாமல் ஒரு நிறுவனத்தின் (நிறுவனம், அறக்கட்டளை போன்றவை) பெயரில் உள்ளதா?"
+      },
+      "operator": "is_true",
+      "label": "Institutional landholders (land owned by a company or trust, not a person)",
+      "sourceQuote": "All Institutional Landholders are not eligible for benefit under the scheme.",
+      "confidence": 0.85,
+      "verified": false
+    }
+  ],
+  "jargon": [
+    { "term": "e-KYC", "meaning": "An online identity check that confirms it is really you, using your Aadhaar number." },
+    { "term": "instalment", "meaning": "One part of a payment that is given in several parts instead of all at once." }
+  ],
+  "documentGaps": [
+    "The document does not clearly state a family income limit.",
+    "Exact land ownership verification process can vary by state."
+  ],
+  "source": {
+    "kind": "seed",
+    "title": "PM-KISAN Scheme Guidelines",
+    "extractedAt": "2024-01-01T00:00:00.000Z",
+    "wordCount": 1800
+  }
+}

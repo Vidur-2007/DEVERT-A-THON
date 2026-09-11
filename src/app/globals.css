@@ -1,26 +1,89 @@
 @import "tailwindcss";
 
+/* Design tokens — SPEC.md Section 9.2. Static, government-counter-but-friendly palette.
+   Declared as Tailwind v4 theme tokens so bg-ink, text-marigold, border-leaf, etc. all work. */
+@theme {
+  --color-ink: #1e2a5a;
+  --color-paper: #f7f8fc;
+  --color-marigold: #e8a317;
+  --color-leaf: #1f7a4d;
+  --color-sindoor: #b83a2e;
+  --color-haldi: #b7791f;
+  --color-haldi-bg: #fff4da;
+  --color-slate: #5b6275;
+}
+
+/* Fonts — SPEC.md Section 9.3. Each next/font/google import below exposes a CSS
+   variable; which one is "active" for headings/body switches with the <html lang>
+   attribute so Devanagari/Telugu/Tamil text always renders in a script-appropriate font. */
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --font-heading-active: var(--font-baloo2), var(--font-noto-sans), sans-serif;
+  --font-body-active: var(--font-noto-sans), sans-serif;
 }
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+html[lang="hi"] {
+  --font-heading-active: var(--font-baloo2), var(--font-noto-sans-devanagari), sans-serif;
+  --font-body-active: var(--font-noto-sans-devanagari), sans-serif;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+html[lang="te"] {
+  --font-heading-active: var(--font-baloo-tammudu2), var(--font-noto-sans-telugu), sans-serif;
+  --font-body-active: var(--font-noto-sans-telugu), sans-serif;
+}
+
+html[lang="ta"] {
+  --font-heading-active: var(--font-baloo-thambi2), var(--font-noto-sans-tamil), sans-serif;
+  --font-body-active: var(--font-noto-sans-tamil), sans-serif;
+}
+
+html {
+  height: 100%;
 }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  min-height: 100%;
+  background: var(--color-paper);
+  color: var(--color-ink);
+  font-family: var(--font-body-active);
+  font-size: 18px; /* SPEC 9.5: base size 18px mobile */
+  line-height: 1.6; /* Indic scripts need extra leading */
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+.font-heading {
+  font-family: var(--font-heading-active);
+}
+
+/* Sentence case everywhere, no shouty labels. */
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  text-transform: none;
+}
+
+/* Visible keyboard focus: marigold 3px ring (SPEC 9.5). */
+:focus-visible {
+  outline: 3px solid var(--color-marigold);
+  outline-offset: 2px;
+}
+
+/* The verdict stamp (Section 9.4) is the only decorative motion in the app;
+   this still guards any future transition/animation against motion sensitivity. */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+    scroll-behavior: auto !important;
+  }
 }

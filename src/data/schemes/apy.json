@@ -1,0 +1,82 @@
+{
+  "id": "apy",
+  "name": "Atal Pension Yojana (APY)",
+  "ministry": "Ministry of Finance (Pension Fund Regulatory and Development Authority)",
+  "level": "central",
+  "tags": ["pension", "insurance"],
+  "summary": {
+    "oneLiner": "Guaranteed monthly pension of ₹1,000 to ₹5,000 after you turn 60.",
+    "whatIsIt": "Atal Pension Yojana helps you save a little now for a guaranteed pension later. If you are between 18 and 40 years old and have a bank account, you can join. You pay a small amount regularly, and after you turn 60, the government pays you a fixed pension every month for life.",
+    "benefits": [
+      { "text": "Fixed monthly pension for life after age 60, based on how much you contribute", "amount": "₹1,000–₹5,000/month" }
+    ],
+    "whoCanApply": ["Your age is between 18 and 40", "You have a bank account"],
+    "notFor": ["Income tax payers"],
+    "documents": [
+      { "name": "Aadhaar card", "mandatory": true },
+      { "name": "Bank passbook", "mandatory": true },
+      { "name": "Mobile number linked to bank account", "mandatory": false }
+    ],
+    "howToApply": [
+      { "title": "Visit your bank", "detail": "Go to the bank branch or post office where you have your savings account." },
+      { "title": "Fill the APY form", "detail": "Give your Aadhaar, mobile number and choose your pension amount." },
+      { "title": "Set up auto-debit", "detail": "Your chosen contribution is deducted automatically from your account." }
+    ],
+    "applyMode": "both",
+    "officialUrl": "https://npscra.nsdl.co.in/scheme-details.php",
+    "helpline": "1800-110-069"
+  },
+  "eligibility": [
+    {
+      "id": "g1",
+      "logic": "ALL",
+      "label": "Basic eligibility",
+      "rules": [
+        {
+          "id": "r1",
+          "field": "age",
+          "operator": "between",
+          "value": 18,
+          "valueMax": 40,
+          "label": "Your age is between 18 and 40",
+          "sourceQuote": "Any citizen of India between 18-40 years of age is eligible to join APY.",
+          "confidence": 0.9,
+          "verified": false
+        },
+        {
+          "id": "r2",
+          "field": "hasBankAccount",
+          "operator": "is_true",
+          "label": "You have a bank account",
+          "sourceQuote": "A savings bank account or post office savings bank account is required to join APY.",
+          "confidence": 0.9,
+          "verified": false
+        }
+      ]
+    }
+  ],
+  "exclusions": [
+    {
+      "id": "x1",
+      "field": "isIncomeTaxPayer",
+      "operator": "is_true",
+      "label": "Income tax payers",
+      "sourceQuote": "An Income Tax payer shall not be eligible to join APY, with effect from 1st October, 2022.",
+      "confidence": 0.85,
+      "verified": false
+    }
+  ],
+  "jargon": [
+    { "term": "contribution", "meaning": "The money you pay regularly into your pension account." },
+    { "term": "auto-debit", "meaning": "Money taken automatically from your bank account on a fixed date." }
+  ],
+  "documentGaps": [
+    "The exact contribution amount for each pension slab is not stated here; it depends on your joining age."
+  ],
+  "source": {
+    "kind": "seed",
+    "title": "Atal Pension Yojana Scheme Details",
+    "extractedAt": "2024-01-01T00:00:00.000Z",
+    "wordCount": 1400
+  }
+}

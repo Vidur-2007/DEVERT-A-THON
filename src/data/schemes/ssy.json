@@ -1,0 +1,66 @@
+{
+  "id": "ssy",
+  "name": "Sukanya Samriddhi Yojana (SSY)",
+  "ministry": "Ministry of Finance (National Savings Institute)",
+  "level": "central",
+  "tags": ["education", "women"],
+  "summary": {
+    "oneLiner": "A high-interest savings account for your daughter's future.",
+    "whatIsIt": "Sukanya Samriddhi Yojana helps parents save for a girl child's education and marriage. If you have a daughter below 10 years old, you can open this account in her name. It offers a higher interest rate than most savings accounts, and the money you deposit gets tax benefits.",
+    "benefits": [
+      { "text": "Higher interest rate than regular savings accounts, plus tax benefits on deposits" }
+    ],
+    "whoCanApply": ["You have a daughter under 10 years old"],
+    "notFor": [],
+    "documents": [
+      { "name": "Birth certificate of the girl child", "mandatory": true },
+      { "name": "Aadhaar card of parent/guardian", "mandatory": true },
+      { "name": "Address proof", "mandatory": true }
+    ],
+    "howToApply": [
+      { "title": "Choose a bank or post office", "detail": "Sukanya Samriddhi accounts can be opened at most banks and post offices." },
+      { "title": "Fill the account opening form", "detail": "Submit the girl child's birth certificate and your identity proof." },
+      {
+        "title": "Deposit regularly",
+        "detail": "Deposit at least ₹250 a year to keep the account active until it reaches maturity."
+      }
+    ],
+    "applyMode": "offline",
+    "officialUrl": "https://www.nsiindia.gov.in",
+    "helpline": "1800-266-6868"
+  },
+  "eligibility": [
+    {
+      "id": "g1",
+      "logic": "ALL",
+      "label": "Basic eligibility",
+      "rules": [
+        {
+          "id": "r1",
+          "field": "numGirlChildrenUnder10",
+          "operator": "gte",
+          "value": 1,
+          "label": "You have a daughter under 10 years old",
+          "sourceQuote": "A Sukanya Samriddhi Account may be opened by the natural or legal guardian in the name of a girl child from birth till she attains the age of 10 years.",
+          "confidence": 0.9,
+          "verified": false
+        }
+      ]
+    }
+  ],
+  "exclusions": [],
+  "jargon": [
+    { "term": "interest rate", "meaning": "The extra money the bank or post office adds to your savings over time." },
+    { "term": "maturity", "meaning": "The time when the account is complete and the money can be withdrawn." }
+  ],
+  "documentGaps": [
+    "The document does not clearly limit the scheme to two daughters per family here, though the official rules cap it at two (with an exception for twins or triplets).",
+    "The current interest rate is not stated here and should be checked online."
+  ],
+  "source": {
+    "kind": "seed",
+    "title": "Sukanya Samriddhi Yojana Scheme Details",
+    "extractedAt": "2024-01-01T00:00:00.000Z",
+    "wordCount": 950
+  }
+}
