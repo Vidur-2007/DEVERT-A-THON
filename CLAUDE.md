@@ -1,0 +1,11 @@
+# Yojana Saathi — working agreement
+- Source of truth: SPEC.md. Build one phase at a time; stop and summarise after each phase.
+- Stack: Next.js App Router + TS strict + Tailwind + zod + Vitest. No other UI kits unless asked.
+- The rules engine in src/lib/engine is pure TS: no React, no fetch, no LLM. Keep it 100% unit-tested.
+- LLM calls only in src/app/api/* via src/lib/llm/provider.ts. Never call LLMs from the client.
+- Every LLM response is zod-validated. Every API route has a non-LLM fallback path.
+- Never send names, phone, Aadhaar or other PII to any API.
+- Mobile-first: design at 375px, then scale up. Tap targets ≥ 48px. Text + icon, never colour alone.
+- All user-facing strings go through i18n/strings.ts.
+- Before finishing a phase: `npm run lint && npm run test && npm run build` must pass.
+- Commit message per phase: "phase N: <summary>".
