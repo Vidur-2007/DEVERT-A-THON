@@ -12,6 +12,7 @@ import { SourceDrawer } from '@/components/SourceDrawer';
 import { JargonText } from '@/components/JargonText';
 import { ReadabilityStrip } from '@/components/ReadabilityStrip';
 import { ApplySteps } from '@/components/ApplySteps';
+import { SpeakButton } from '@/components/SpeakButton';
 
 // Looks up the Rule behind a whoCanApply/notFor bullet by matching its plain-language
 // *English* label (seed schemes are authored so these labels line up 1:1 with a rule) --
@@ -74,8 +75,9 @@ export default function SchemeExplainerPage() {
         <p className="mt-2 text-lg text-ink/90">
           <JargonText text={summary.whatIsIt} jargon={scheme.jargon} />
         </p>
-        <div className="mt-3">
+        <div className="mt-3 flex flex-wrap items-center gap-3">
           <ReadabilityStrip originalWordCount={scheme.source.wordCount} simplifiedWordCount={simplifiedWordCount} />
+          <SpeakButton text={`${summary.oneLiner} ${summary.whatIsIt}`} />
         </div>
       </section>
 

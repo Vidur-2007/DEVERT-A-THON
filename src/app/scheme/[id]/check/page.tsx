@@ -24,6 +24,7 @@ import { DocChecklist } from '@/components/DocChecklist';
 import { ApplySteps } from '@/components/ApplySteps';
 import { AltSchemeCard } from '@/components/AltSchemeCard';
 import { Disclaimer } from '@/components/Disclaimer';
+import { SpeakButton } from '@/components/SpeakButton';
 
 type HistoryEntry =
   | { type: 'answer-field'; field: FieldKey }
@@ -361,6 +362,9 @@ export default function EligibilityCheckPage() {
       {/* 2. Personal explanation */}
       <section className="mb-6 rounded-xl border border-ink/10 bg-white p-4 text-base text-ink">
         <p>{explanation}</p>
+        <div className="mt-3">
+          <SpeakButton text={explanation} />
+        </div>
         {translationFailed && <p className="mt-2 text-xs text-haldi">{t('translationUnavailable')}</p>}
       </section>
 
