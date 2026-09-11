@@ -8,6 +8,10 @@ Yojana Saathi **compiles** a government scheme document (a PM-KISAN-style PDF, o
 
 Built for a hackathon against [`SPEC.md`](SPEC.md), which is the full source of truth for architecture, the rules engine DSL, the LLM layer, UI/UX system, and acceptance criteria.
 
+## Live demo
+
+**[devert-a-thon.vercel.app](https://devert-a-thon.vercel.app/)**
+
 ## How it works
 
 1. **Upload or pick a scheme.** Upload a PDF/pasted document, or choose one of 8 pre-compiled central schemes.
