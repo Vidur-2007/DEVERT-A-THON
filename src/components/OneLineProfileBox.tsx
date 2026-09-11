@@ -61,18 +61,18 @@ export function OneLineProfileBox({ onParsed, onSkip }: OneLineProfileBoxProps) 
           value={listening && transcript ? transcript : text}
           onChange={(e) => setText(e.target.value)}
           placeholder={t('oneLinePlaceholder')}
-          className="min-h-[56px] flex-1 rounded-2xl border border-ink/15 bg-white px-4 text-lg text-ink focus-visible:outline-none focus-visible:border-marigold"
+          className="min-h-[56px] flex-1 rounded-2xl border border-ink/15 bg-white px-4 text-lg text-ink focus-visible:border-marigold"
         />
         {micSupported && <MicButton listening={listening} onClick={() => (listening ? stop() : start())} />}
       </div>
-      {listening && <p className="mt-2 text-sm text-marigold">{t('micListening')}</p>}
-      {!listening && micError && <p className="mt-2 text-sm text-haldi">{t('voiceInputError')}</p>}
+      {listening && <p className="mt-2 text-sm text-marigold-ink">{t('micListening')}</p>}
+      {!listening && micError && <p className="mt-2 text-sm text-haldi-ink">{t('voiceInputError')}</p>}
 
       <div className="mt-6 flex items-center justify-between gap-3">
         <button
           type="button"
           onClick={onSkip}
-          className="min-h-[48px] px-2 text-base font-medium text-slate underline hover:text-ink focus-visible:outline-none"
+          className="min-h-[48px] px-2 text-base font-medium text-slate underline hover:text-ink"
         >
           {t('skipAskMeQuestions')}
         </button>
@@ -80,7 +80,7 @@ export function OneLineProfileBox({ onParsed, onSkip }: OneLineProfileBoxProps) 
           type="button"
           onClick={handleContinue}
           disabled={loading}
-          className="flex min-h-[56px] items-center justify-center rounded-full bg-ink px-6 text-lg font-semibold text-paper focus-visible:outline-none disabled:opacity-50"
+          className="flex min-h-[56px] items-center justify-center rounded-full bg-ink px-6 text-lg font-semibold text-paper disabled:opacity-50"
         >
           {loading ? t('understandingYou') : t('continueLabel')}
         </button>

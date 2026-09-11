@@ -154,7 +154,7 @@ export default function EligibilityCheckPage() {
     return (
       <div className="mx-auto max-w-[720px] px-4 py-10 text-center">
         <p className="text-lg text-ink">{t('schemeNotFound')}</p>
-        <Link href="/" className="mt-4 inline-block text-marigold underline">
+        <Link href="/" className="mt-4 inline-flex min-h-[48px] items-center text-marigold-ink underline">
           {t('backToHome')}
         </Link>
       </div>
@@ -325,7 +325,7 @@ export default function EligibilityCheckPage() {
               <button
                 type="button"
                 onClick={handleEditProfile}
-                className="flex-none font-medium text-marigold underline focus-visible:outline-none"
+                className="flex-none font-medium text-marigold-ink underline"
               >
                 {t('editProfile')}
               </button>
@@ -355,7 +355,7 @@ export default function EligibilityCheckPage() {
     <div className="mx-auto max-w-[720px] px-4 pb-16 pt-6">
       <Link
         href={`/scheme/${scheme.id}`}
-        className="mb-4 inline-flex items-center gap-1 text-sm text-slate hover:text-ink"
+        className="mb-4 inline-flex min-h-[48px] items-center gap-1 text-sm text-slate hover:text-ink"
       >
         <ArrowLeft size={16} aria-hidden="true" /> {t('backToScheme')}
       </Link>
@@ -372,7 +372,7 @@ export default function EligibilityCheckPage() {
         <div className="mt-3">
           <SpeakButton text={explanation} />
         </div>
-        {translationFailed && <p className="mt-2 text-xs text-haldi">{t('translationUnavailable')}</p>}
+        {translationFailed && <p className="mt-2 text-xs text-haldi-ink">{t('translationUnavailable')}</p>}
       </section>
 
       {/* 3. Why -- criteria breakdown */}
@@ -414,7 +414,7 @@ export default function EligibilityCheckPage() {
         )}
         {unknown.length > 0 && (
           <div>
-            <h2 className="mb-2 text-lg font-semibold text-haldi">{t('weStillNeedToKnow')}</h2>
+            <h2 className="mb-2 text-lg font-semibold text-haldi-ink">{t('weStillNeedToKnow')}</h2>
             <div className="space-y-2">
               {unknown.map((r) => (
                 <CriterionRow

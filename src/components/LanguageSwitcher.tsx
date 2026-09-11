@@ -25,7 +25,7 @@ export function LanguageSwitcher() {
             role="radio"
             aria-checked={active}
             onClick={() => setLang(code)}
-            className={`flex min-h-[48px] items-center rounded-full px-4 text-base font-medium transition-colors focus-visible:outline-none ${
+            className={`flex min-h-[48px] items-center rounded-full px-4 text-base font-medium transition-colors ${
               active
                 ? 'bg-ink text-paper'
                 : 'border border-slate/30 bg-white text-ink hover:border-ink'

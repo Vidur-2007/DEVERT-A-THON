@@ -22,7 +22,7 @@ interface CriterionRowProps {
 const STATUS_STYLE: Record<Status, { Icon: LucideIcon; color: string; bg: string }> = {
   PASS: { Icon: Check, color: 'text-leaf', bg: 'bg-leaf/10' },
   FAIL: { Icon: X, color: 'text-sindoor', bg: 'bg-sindoor/10' },
-  UNKNOWN: { Icon: HelpCircle, color: 'text-haldi', bg: 'bg-haldi-bg' },
+  UNKNOWN: { Icon: HelpCircle, color: 'text-haldi-ink', bg: 'bg-haldi-bg' },
 };
 
 const STATUS_SR_KEY: Record<Status, 'srMet' | 'srNotMet' | 'srUnknown'> = {
@@ -45,8 +45,8 @@ export function CriterionRow({
   const { Icon, color, bg } = STATUS_STYLE[status];
   const clickable = status === 'UNKNOWN' && Boolean(onTapUnknown);
 
-  const row = (
-    <div className={`flex items-start gap-3 rounded-lg p-3 ${compact ? '' : 'border border-ink/10 bg-white'}`}>
+  const iconAndLabel = (
+    <>
       <span className={`mt-0.5 flex h-6 w-6 flex-none items-center justify-center rounded-full ${bg} ${color}`}>
         <Icon size={14} aria-hidden="true" />
       </span>
@@ -60,18 +60,23 @@ export function CriterionRow({
         )}
         {nearMiss && !compact && <span className="mt-1 block text-sm text-slate">{nearMiss}</span>}
       </span>
+    </>
+  );
+
+  // SourceDrawer renders its own <button>, so it must be a sibling here, never nested inside
+  // the "tap to answer" button below -- a <button> can't validly contain another <button>.
+  return (
+    <div className={`flex items-start gap-3 rounded-lg p-3 ${compact ? '' : 'border border-ink/10 bg-white'}`}>
+      {clickable ? (
+        <button type="button" onClick={onTapUnknown} className="flex flex-1 items-start gap-3 text-left">
+          {iconAndLabel}
+        </button>
+      ) : (
+        iconAndLabel
+      )}
       {!compact && sourceQuote && (
         <SourceDrawer label={label} sourceQuote={sourceQuote} verified={verified} variant="link" />
       )}
     </div>
   );
-
-  if (clickable) {
-    return (
-      <button type="button" onClick={onTapUnknown} className="w-full text-left focus-visible:outline-none">
-        {row}
-      </button>
-    );
-  }
-  return row;
 }

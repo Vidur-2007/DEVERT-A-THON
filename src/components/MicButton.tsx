@@ -20,8 +20,8 @@ export function MicButton({ listening, onClick }: MicButtonProps) {
       aria-pressed={listening}
       aria-label={listening ? t('micListening') : t('micTapToSpeak')}
       title={listening ? t('micListening') : t('micTapToSpeak')}
-      className={`no-print flex h-14 w-14 flex-none items-center justify-center rounded-full transition focus-visible:outline-none ${
-        listening ? 'animate-pulse bg-sindoor text-white' : 'bg-marigold/15 text-marigold hover:bg-marigold/25'
+      className={`no-print flex h-14 w-14 flex-none items-center justify-center rounded-full transition ${
+        listening ? 'animate-pulse bg-sindoor text-white' : 'bg-marigold/15 text-marigold-ink hover:bg-marigold/25'
       }`}
     >
       <Mic size={24} aria-hidden="true" />

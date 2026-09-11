@@ -11,6 +11,13 @@
   --color-haldi: #b7791f;
   --color-haldi-bg: #fff4da;
   --color-slate: #5b6275;
+
+  /* Darker "ink" variants of marigold/haldi for use as TEXT (links, labels, icons that
+     carry meaning). The base marigold/haldi tones only reach ~2.1:1 and ~3.5:1 against
+     paper/white, below the 4.5:1 SPEC 9.5 requires for text -- these pass at ~5:1+ while
+     keeping the same hue, and stay reserved for backgrounds/borders/large decorative fills. */
+  --color-marigold-ink: #9a5b0a;
+  --color-haldi-ink: #8a5a0d;
 }
 
 /* Fonts — SPEC.md Section 9.3. Each next/font/google import below exposes a CSS
@@ -69,10 +76,15 @@ h6 {
   text-transform: none;
 }
 
-/* Visible keyboard focus: marigold 3px ring (SPEC 9.5). */
+/* Visible keyboard focus: marigold 3px ring (SPEC 9.5). `transition: none` is required --
+   Tailwind's `.transition` utility (used on most interactive elements for hover states)
+   animates `outline-color` among other properties, which on Chrome can leave a
+   just-focused element's outline stuck at its pre-focus color instead of snapping to
+   marigold. Focus rings should never be animated anyway. */
 :focus-visible {
   outline: 3px solid var(--color-marigold);
   outline-offset: 2px;
+  transition: none;
 }
 
 /* The verdict stamp's one-time "settle" on first reveal (Section 9.4) -- the only

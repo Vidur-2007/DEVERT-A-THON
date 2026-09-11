@@ -39,13 +39,16 @@ export function ApplySteps({ steps, jargon, officialUrl, helpline }: ApplyStepsP
             href={officialUrl}
             target="_blank"
             rel="noreferrer"
-            className="inline-flex items-center gap-1 text-marigold underline"
+            className="inline-flex min-h-[48px] items-center gap-1 text-marigold-ink underline"
           >
             <ExternalLink size={14} aria-hidden="true" /> {t('officialWebsite')}
           </a>
         )}
         {helpline && (
-          <a href={`tel:${helpline}`} className="inline-flex items-center gap-1 text-marigold underline">
+          <a
+            href={`tel:${helpline}`}
+            className="inline-flex min-h-[48px] items-center gap-1 text-marigold-ink underline"
+          >
             <Phone size={14} aria-hidden="true" /> {helpline}
           </a>
         )}

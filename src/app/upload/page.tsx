@@ -132,7 +132,7 @@ export default function UploadPage() {
         </div>
         <Link
           href={`/scheme/${result.scheme.id}`}
-          className="mt-6 inline-flex min-h-[56px] items-center justify-center rounded-full bg-ink px-6 text-lg font-semibold text-paper focus-visible:outline-none"
+          className="mt-6 inline-flex min-h-[56px] items-center justify-center rounded-full bg-ink px-6 text-lg font-semibold text-paper"
         >
           {t('seeSimplifiedVersion')}
         </Link>
@@ -152,7 +152,7 @@ export default function UploadPage() {
             {error.message}
           </p>
           {(error.code === 'LLM_UNAVAILABLE' || error.code === 'NOT_A_SCHEME') && (
-            <Link href="/#library" className="mt-3 inline-block text-marigold underline">
+            <Link href="/#library" className="mt-3 inline-block text-marigold-ink underline">
               {t('browseLibraryInstead')}
             </Link>
           )}
@@ -164,7 +164,7 @@ export default function UploadPage() {
 
       <div className="mt-6 grid gap-4">
         <label className="flex min-h-[96px] cursor-pointer flex-col items-center justify-center gap-2 rounded-2xl border-2 border-dashed border-ink/20 bg-white p-6 text-center transition hover:border-marigold">
-          <Upload className="text-marigold" size={28} aria-hidden="true" />
+          <Upload className="text-marigold-ink" size={28} aria-hidden="true" />
           <span className="text-base font-semibold text-ink">{t('choosePdfFile')}</span>
           <span className="text-sm text-slate">{t('pdfSizeLimit')}</span>
           <input type="file" accept="application/pdf" className="sr-only" onChange={handleFileChange} />
@@ -182,7 +182,7 @@ export default function UploadPage() {
             onChange={(e) => setPastedText(e.target.value)}
             placeholder={t('pasteTextPlaceholder')}
             rows={8}
-            className="w-full rounded-2xl border border-ink/15 bg-white p-4 text-base text-ink focus-visible:outline-none focus-visible:border-marigold"
+            className="w-full rounded-2xl border border-ink/15 bg-white p-4 text-base text-ink focus-visible:border-marigold"
           />
           <button
             type="button"
@@ -203,7 +203,7 @@ export default function UploadPage() {
         <button
           type="button"
           onClick={handleTrySample}
-          className="flex min-h-[56px] items-center justify-center gap-2 rounded-full border border-ink/15 bg-white px-4 text-base font-medium text-ink transition hover:border-marigold hover:text-marigold focus-visible:outline-none"
+          className="flex min-h-[56px] items-center justify-center gap-2 rounded-full border border-ink/15 bg-white px-4 text-base font-medium text-ink transition hover:border-marigold hover:text-marigold-ink"
         >
           <FileText size={18} aria-hidden="true" /> {t('trySample')}
         </button>

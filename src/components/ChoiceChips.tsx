@@ -14,7 +14,7 @@ export function ChoiceChips({ options, onSelect }: ChoiceChipsProps) {
           key={opt.value}
           type="button"
           onClick={() => onSelect(opt.value)}
-          className="flex min-h-[56px] items-center justify-center rounded-2xl border border-ink/15 bg-white px-4 text-center text-lg font-medium text-ink transition hover:border-marigold hover:text-marigold focus-visible:outline-none"
+          className="flex min-h-[56px] items-center justify-center rounded-2xl border border-ink/15 bg-white px-4 text-center text-lg font-medium text-ink transition hover:border-marigold hover:text-marigold-ink"
         >
           {opt.label}
         </button>

@@ -159,7 +159,7 @@ export default function DiscoverPage() {
             type="button"
             onClick={() => setActiveTag(null)}
             aria-pressed={activeTag === null}
-            className={`flex min-h-[40px] items-center rounded-full px-3 text-sm font-medium transition focus-visible:outline-none ${
+            className={`flex min-h-[40px] items-center rounded-full px-3 text-sm font-medium transition ${
               activeTag === null ? 'bg-ink text-paper' : 'border border-ink/15 bg-white text-ink hover:border-marigold'
             }`}
           >
@@ -171,7 +171,7 @@ export default function DiscoverPage() {
               type="button"
               onClick={() => setActiveTag(tag)}
               aria-pressed={activeTag === tag}
-              className={`flex min-h-[40px] items-center rounded-full px-3 text-sm font-medium transition focus-visible:outline-none ${
+              className={`flex min-h-[40px] items-center rounded-full px-3 text-sm font-medium transition ${
                 activeTag === tag ? 'bg-ink text-paper' : 'border border-ink/15 bg-white text-ink hover:border-marigold'
               }`}
             >

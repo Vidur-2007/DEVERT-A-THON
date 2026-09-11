@@ -44,7 +44,7 @@ export default function SchemeExplainerPage() {
     return (
       <div className="mx-auto max-w-[720px] px-4 py-10 text-center">
         <p className="text-lg text-ink">{t('schemeNotFound')}</p>
-        <Link href="/" className="mt-4 inline-block text-marigold underline">
+        <Link href="/" className="mt-4 inline-flex min-h-[48px] items-center text-marigold-ink underline">
           {t('backToHome')}
         </Link>
       </div>
@@ -55,7 +55,7 @@ export default function SchemeExplainerPage() {
 
   return (
     <div className="mx-auto max-w-[720px] px-4 pb-28 pt-6">
-      <Link href="/" className="mb-4 inline-flex items-center gap-1 text-sm text-slate hover:text-ink">
+      <Link href="/" className="mb-4 inline-flex min-h-[48px] items-center gap-1 text-sm text-slate hover:text-ink">
         <ArrowLeft size={16} aria-hidden="true" /> {t('backToHome')}
       </Link>
 
@@ -66,7 +66,7 @@ export default function SchemeExplainerPage() {
         </span>
         <h1 className="mt-2 text-3xl font-bold text-ink">{scheme.name}</h1>
         {scheme.ministry && <p className="mt-1 text-sm text-slate">{scheme.ministry}</p>}
-        {translationFailed && <p className="mt-2 text-xs text-haldi">{t('translationUnavailable')}</p>}
+        {translationFailed && <p className="mt-2 text-xs text-haldi-ink">{t('translationUnavailable')}</p>}
       </header>
 
       {/* 2. In simple words */}
@@ -161,7 +161,7 @@ export default function SchemeExplainerPage() {
       {/* 7. Not clear in the document */}
       {scheme.documentGaps.length > 0 && (
         <section className="mb-6 rounded-xl bg-haldi-bg p-4">
-          <h2 className="mb-2 text-base font-semibold text-haldi">{t('notClearInDocument')}</h2>
+          <h2 className="mb-2 text-base font-semibold text-haldi-ink">{t('notClearInDocument')}</h2>
           <ul className="list-inside list-disc space-y-1 text-sm text-ink/80">
             {scheme.documentGaps.map((gap, i) => (
               <li key={i}>{gap}</li>
@@ -175,7 +175,7 @@ export default function SchemeExplainerPage() {
         <div className="mx-auto max-w-[720px]">
           <Link
             href={`/scheme/${scheme.id}/check`}
-            className="flex min-h-[56px] items-center justify-center rounded-full bg-ink text-lg font-semibold text-paper focus-visible:outline-none"
+            className="flex min-h-[56px] items-center justify-center rounded-full bg-ink text-lg font-semibold text-paper"
           >
             {t('checkIfICanApply')}
           </Link>

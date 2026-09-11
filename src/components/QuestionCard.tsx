@@ -70,7 +70,7 @@ export function QuestionCard({
         <button
           type="button"
           onClick={onBack}
-          className="mb-4 inline-flex items-center gap-1 text-sm text-slate hover:text-ink focus-visible:outline-none"
+          className="mb-4 inline-flex items-center gap-1 text-sm text-slate hover:text-ink"
         >
           <ArrowLeft size={16} aria-hidden="true" /> {t('back')}
         </button>
@@ -87,18 +87,18 @@ export function QuestionCard({
       {sensitive && <p className="mt-1 text-xs text-slate">{t('staysOnYourPhone')}</p>}
 
       {listening && (
-        <p className="mt-3 text-sm text-marigold">
+        <p className="mt-3 text-sm text-marigold-ink">
           {transcript ? tf('weHeard', { transcript }) : t('micListening')}
         </p>
       )}
       {!listening && unmatched && (
-        <div className="mt-3 rounded-lg bg-haldi-bg p-3 text-sm text-haldi" role="status">
+        <div className="mt-3 rounded-lg bg-haldi-bg p-3 text-sm text-haldi-ink" role="status">
           <p>{tf('weHeard', { transcript: unmatched })}</p>
           <p className="mt-1">{t('didntUnderstand')}</p>
         </div>
       )}
       {!listening && !unmatched && micError && (
-        <p className="mt-3 text-sm text-haldi" role="status">
+        <p className="mt-3 text-sm text-haldi-ink" role="status">
           {t('voiceInputError')}
         </p>
       )}
@@ -121,14 +121,14 @@ export function QuestionCard({
         <button
           type="button"
           onClick={onDontKnow}
-          className="min-h-[48px] px-2 text-base font-medium text-slate underline hover:text-ink focus-visible:outline-none"
+          className="min-h-[48px] px-2 text-base font-medium text-slate underline hover:text-ink"
         >
           {t('iDontKnow')}
         </button>
         <button
           type="button"
           onClick={onShowResult}
-          className="min-h-[48px] px-2 text-base font-medium text-marigold underline focus-visible:outline-none"
+          className="min-h-[48px] px-2 text-base font-medium text-marigold-ink underline"
         >
           {t('showMyResultNow')}
         </button>

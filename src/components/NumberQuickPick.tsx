@@ -24,7 +24,7 @@ export function NumberQuickPick({ quickPicks, onSelect }: NumberQuickPickProps) 
               key={qp.value}
               type="button"
               onClick={() => onSelect(qp.value)}
-              className="flex min-h-[56px] items-center justify-center rounded-2xl border border-ink/15 bg-white px-3 text-center text-base font-medium text-ink transition hover:border-marigold hover:text-marigold focus-visible:outline-none"
+              className="flex min-h-[56px] items-center justify-center rounded-2xl border border-ink/15 bg-white px-3 text-center text-base font-medium text-ink transition hover:border-marigold hover:text-marigold-ink"
             >
               {qp.label}
             </button>
@@ -39,7 +39,7 @@ export function NumberQuickPick({ quickPicks, onSelect }: NumberQuickPickProps) 
           onChange={(e) => setManual(e.target.value)}
           placeholder={t('otherAmount')}
           aria-label={t('otherAmount')}
-          className="min-h-[56px] flex-1 rounded-2xl border border-ink/15 bg-white px-4 text-lg text-ink focus-visible:outline-none focus-visible:border-marigold"
+          className="min-h-[56px] flex-1 rounded-2xl border border-ink/15 bg-white px-4 text-lg text-ink focus-visible:border-marigold"
         />
         <button
           type="button"

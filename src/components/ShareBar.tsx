@@ -32,21 +32,21 @@ export function ShareBar({ schemeName, oneLiner, verdictLabel, onStartAgain }: S
       <button
         type="button"
         onClick={handleShare}
-        className="flex min-h-[48px] items-center gap-2 rounded-full border border-ink/15 bg-white px-4 text-sm font-medium text-ink transition hover:border-leaf hover:text-leaf focus-visible:outline-none"
+        className="flex min-h-[48px] items-center gap-2 rounded-full border border-ink/15 bg-white px-4 text-sm font-medium text-ink transition hover:border-leaf hover:text-leaf"
       >
         <MessageCircle size={16} aria-hidden="true" /> {t('shareOnWhatsApp')}
       </button>
       <button
         type="button"
         onClick={() => window.print()}
-        className="flex min-h-[48px] items-center gap-2 rounded-full border border-ink/15 bg-white px-4 text-sm font-medium text-ink transition hover:border-marigold focus-visible:outline-none"
+        className="flex min-h-[48px] items-center gap-2 rounded-full border border-ink/15 bg-white px-4 text-sm font-medium text-ink transition hover:border-marigold"
       >
         <Printer size={16} aria-hidden="true" /> {t('printSaveAsPdf')}
       </button>
       <button
         type="button"
         onClick={onStartAgain}
-        className="flex min-h-[48px] items-center gap-2 rounded-full border border-ink/15 bg-white px-4 text-sm font-medium text-ink transition hover:border-sindoor hover:text-sindoor focus-visible:outline-none"
+        className="flex min-h-[48px] items-center gap-2 rounded-full border border-ink/15 bg-white px-4 text-sm font-medium text-ink transition hover:border-sindoor hover:text-sindoor"
       >
         <RotateCcw size={16} aria-hidden="true" /> {t('startAgain')}
       </button>

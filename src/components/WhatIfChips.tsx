@@ -50,7 +50,7 @@ export function WhatIfChips({ scheme, profile, suggestions, labelFor }: WhatIfCh
               <button
                 type="button"
                 onClick={() => handleTry(suggestion)}
-                className="min-h-[48px] rounded-full border border-ink/15 bg-white px-4 text-base text-ink transition hover:border-marigold focus-visible:outline-none"
+                className="min-h-[48px] rounded-full border border-ink/15 bg-white px-4 text-base text-ink transition hover:border-marigold"
               >
                 {tf('tryThisValue', { value: valueLabel })}
               </button>

@@ -30,9 +30,9 @@ export default function LandingPage() {
       <div className="mt-8 grid gap-4">
         <Link
           href="/upload"
-          className="flex items-center gap-4 rounded-2xl border border-ink/10 bg-white p-5 shadow-sm transition hover:border-marigold focus-visible:outline-none"
+          className="flex items-center gap-4 rounded-2xl border border-ink/10 bg-white p-5 shadow-sm transition hover:border-marigold"
         >
-          <span className="flex h-12 w-12 flex-none items-center justify-center rounded-full bg-marigold/15 text-marigold">
+          <span className="flex h-12 w-12 flex-none items-center justify-center rounded-full bg-marigold/15 text-marigold-ink">
             <Upload aria-hidden="true" />
           </span>
           <span>
@@ -43,7 +43,7 @@ export default function LandingPage() {
 
         <a
           href="#library"
-          className="flex items-center gap-4 rounded-2xl border border-ink/10 bg-white p-5 shadow-sm transition hover:border-marigold focus-visible:outline-none"
+          className="flex items-center gap-4 rounded-2xl border border-ink/10 bg-white p-5 shadow-sm transition hover:border-marigold"
         >
           <span className="flex h-12 w-12 flex-none items-center justify-center rounded-full bg-leaf/15 text-leaf">
             <ListChecks aria-hidden="true" />
@@ -56,7 +56,7 @@ export default function LandingPage() {
 
         <Link
           href="/discover"
-          className="flex items-center gap-4 rounded-2xl border border-ink/10 bg-white p-5 shadow-sm transition hover:border-marigold focus-visible:outline-none"
+          className="flex items-center gap-4 rounded-2xl border border-ink/10 bg-white p-5 shadow-sm transition hover:border-marigold"
         >
           <span className="flex h-12 w-12 flex-none items-center justify-center rounded-full bg-ink/10 text-ink">
             <Sparkles aria-hidden="true" />
@@ -76,7 +76,7 @@ export default function LandingPage() {
               <Link
                 key={scheme.id}
                 href={`/scheme/${scheme.id}`}
-                className="flex min-h-[48px] items-center rounded-full border border-ink/15 bg-white px-4 py-2 text-base text-ink transition hover:border-marigold hover:text-marigold focus-visible:outline-none"
+                className="flex min-h-[48px] items-center rounded-full border border-ink/15 bg-white px-4 py-2 text-base text-ink transition hover:border-marigold hover:text-marigold-ink"
               >
                 {scheme.name}
               </Link>
@@ -92,7 +92,7 @@ export default function LandingPage() {
             <Link
               key={scheme.id}
               href={`/scheme/${scheme.id}`}
-              className="flex min-h-[48px] items-center rounded-full border border-ink/15 bg-white px-4 py-2 text-base text-ink transition hover:border-marigold hover:text-marigold focus-visible:outline-none"
+              className="flex min-h-[48px] items-center rounded-full border border-ink/15 bg-white px-4 py-2 text-base text-ink transition hover:border-marigold hover:text-marigold-ink"
             >
               {scheme.name}
             </Link>

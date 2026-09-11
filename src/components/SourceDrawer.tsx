@@ -28,7 +28,7 @@ export function SourceDrawer({ label, sourceQuote, verified, variant = 'icon' }:
           onClick={() => setOpen(true)}
           aria-label={t('showSource')}
           title={t('showSource')}
-          className="inline-flex h-8 w-8 flex-none items-center justify-center rounded-full text-slate hover:bg-ink/5 focus-visible:outline-none"
+          className="inline-flex h-12 w-12 flex-none items-center justify-center rounded-full text-slate hover:bg-ink/5"
         >
           <Quote size={16} aria-hidden="true" />
         </button>
@@ -36,7 +36,7 @@ export function SourceDrawer({ label, sourceQuote, verified, variant = 'icon' }:
         <button
           type="button"
           onClick={() => setOpen(true)}
-          className="inline-flex flex-none items-center gap-1 whitespace-nowrap text-sm font-medium text-marigold underline focus-visible:outline-none"
+          className="inline-flex flex-none items-center gap-1 whitespace-nowrap text-sm font-medium text-marigold-ink underline"
         >
           <Quote size={14} aria-hidden="true" /> {t('seeTheRule')}
         </button>
@@ -60,7 +60,7 @@ export function SourceDrawer({ label, sourceQuote, verified, variant = 'icon' }:
                 type="button"
                 onClick={() => setOpen(false)}
                 aria-label={t('close')}
-                className="flex-none rounded-full p-1 text-slate hover:bg-ink/5 focus-visible:outline-none"
+                className="flex h-12 w-12 flex-none items-center justify-center rounded-full text-slate hover:bg-ink/5"
               >
                 <X size={20} aria-hidden="true" />
               </button>
@@ -72,7 +72,7 @@ export function SourceDrawer({ label, sourceQuote, verified, variant = 'icon' }:
 
             <p
               className={`mt-3 inline-flex items-center gap-1.5 rounded-full px-3 py-1 text-sm font-medium ${
-                verified ? 'bg-leaf/10 text-leaf' : 'bg-haldi-bg text-haldi'
+                verified ? 'bg-leaf/10 text-leaf' : 'bg-haldi-bg text-haldi-ink'
               }`}
             >
               {verified ? (

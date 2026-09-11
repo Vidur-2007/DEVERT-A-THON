@@ -36,7 +36,7 @@ export const VERDICT_META: Record<Verdict, VerdictMeta> = {
     ring: 'outline',
   },
   NEED_MORE_INFO: {
-    textClass: 'text-haldi',
+    textClass: 'text-haldi-ink',
     bgClass: 'bg-haldi-bg',
     ringClass: 'stroke-haldi',
     fillClass: 'fill-haldi',
