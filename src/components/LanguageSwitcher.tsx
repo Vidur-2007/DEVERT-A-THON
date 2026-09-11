@@ -3,8 +3,7 @@
 import { useLang } from '@/lib/i18n/useLang';
 import type { Lang } from '@/lib/types';
 
-// English and Hindi first per SPEC Phase 2 scope; Telugu/Tamil content translation
-// arrives in Phase 5, but the switcher already offers all four languages.
+// English and Hindi listed first (SPEC Section 10); Telugu and Tamil follow.
 const LANGUAGES: { code: Lang; label: string }[] = [
   { code: 'en', label: 'English' },
   { code: 'hi', label: 'हिंदी' },
