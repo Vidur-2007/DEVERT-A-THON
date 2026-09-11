@@ -36,7 +36,7 @@ All in `.env.local` (see `.env.local.example`):
 | Variable | Purpose |
 |---|---|
 | `GEMINI_API_KEY` | Free key from [aistudio.google.com](https://aistudio.google.com) — primary LLM provider |
-| `GEMINI_MODEL` | Model name, e.g. `gemini-2.5-flash` |
+| `GEMINI_MODEL` | Model name — `gemini-flash-lite-latest` is fast and reliable; `gemini-flash-latest` also works but is much slower (25-45s/call) and prone to "high demand" 503s on the free tier |
 | `GROQ_API_KEY` | Free key from [console.groq.com](https://console.groq.com) — optional fallback provider |
 | `GROQ_MODEL` | Model name, e.g. `llama-3.3-70b-versatile` |
 | `LLM_PRIMARY` | `gemini` or `groq` — which provider to try first |
