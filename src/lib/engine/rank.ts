@@ -24,16 +24,20 @@ function tagOverlapCount(a: string[], b: string[]): number {
 }
 
 function topPassingLabels(evaluation: Evaluation, max = 2): string[] {
-  const labels: string[] = [];
+  // A Set, not an array: two separate rules can (and in our seeds sometimes do) share
+  // the same plain-language label -- e.g. two ALL-group rules both authored as "You are
+  // a woman aged 18 or above" so they line up with one whoCanApply bullet. Without
+  // deduping, that reads as the same reason listed twice.
+  const labels = new Set<string>();
   for (const g of evaluation.groups) {
     for (const r of g.results) {
-      if (r.status === 'PASS') labels.push(r.rule.label);
+      if (r.status === 'PASS') labels.add(r.rule.label);
     }
   }
   for (const e of evaluation.exclusions) {
-    if (e.status === 'PASS') labels.push(e.rule.label);
+    if (e.status === 'PASS') labels.add(e.rule.label);
   }
-  return labels.slice(0, max);
+  return [...labels].slice(0, max);
 }
 
 /**

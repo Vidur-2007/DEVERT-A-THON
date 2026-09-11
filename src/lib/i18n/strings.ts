@@ -505,6 +505,35 @@ export const STRINGS = {
     te: '{scheme}: {verdict}. {oneLiner} యోజన సాథితో మీరే తనిఖీ చేసుకోండి: {url}',
     ta: '{scheme}: {verdict}. {oneLiner} யோஜனா சாத்தியுடன் நீங்களே சரிபார்க்கவும்: {url}',
   },
+
+  // Discover page (8.5)
+  resultsForYou: {
+    en: 'Schemes for you',
+    hi: 'आपके लिए योजनाएं',
+    te: 'మీ కోసం పథకాలు',
+    ta: 'உங்களுக்கான திட்டங்கள்',
+  },
+  filterByCategory: {
+    en: 'Filter by category',
+    hi: 'श्रेणी के अनुसार फ़िल्टर करें',
+    te: 'వర్గం ద్వారా ఫిల్టర్ చేయండి',
+    ta: 'வகை மூலம் வடிகட்டவும்',
+  },
+  tagAll: { en: 'All', hi: 'सभी', te: 'అన్నీ', ta: 'அனைத்தும்' },
+  tagFarmers: { en: 'Farmers', hi: 'किसान', te: 'రైతులు', ta: 'விவசாயிகள்' },
+  tagWomen: { en: 'Women', hi: 'महिलाएं', te: 'మహిళలు', ta: 'பெண்கள்' },
+  tagPension: { en: 'Pension', hi: 'पेंशन', te: 'పెన్షన్', ta: 'ஓய்வூதியம்' },
+  tagHealth: { en: 'Health', hi: 'स्वास्थ्य', te: 'ఆరోగ్యం', ta: 'சுகாதாரம்' },
+  tagInsurance: { en: 'Insurance', hi: 'बीमा', te: 'బీమా', ta: 'காப்பீடு' },
+  tagEducation: { en: 'Education', hi: 'शिक्षा', te: 'విద్య', ta: 'கல்வி' },
+  tagHousing: { en: 'Housing', hi: 'आवास', te: 'గృహనిర్మాణం', ta: 'வீட்டுவசதி' },
+  tagLoans: { en: 'Loans', hi: 'ऋण', te: 'రుణాలు', ta: 'கடன்கள்' },
+  noMatchingSchemes: {
+    en: 'No schemes match this filter yet.',
+    hi: 'इस फ़िल्टर से कोई योजना नहीं मिली।',
+    te: 'ఈ ఫిల్టర్‌కు పథకాలు లేవు.',
+    ta: 'இந்த வடிப்பானுக்கு திட்டங்கள் இல்லை.',
+  },
 } satisfies Record<string, Record<Lang, string>>;
 
 export type StringKey = keyof typeof STRINGS;

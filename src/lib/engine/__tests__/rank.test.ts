@@ -97,4 +97,24 @@ describe('rankAlternatives', () => {
     const top = alts.find((a) => a.scheme.id === 'eligible-scheme');
     expect(top?.topReasons).toContain('r1');
   });
+
+  it('does not list the same reason twice when two rules share a label', () => {
+    // Seeds sometimes author two rules with the identical plain-language label so they
+    // both back one whoCanApply bullet (e.g. PMUY's gender + age rules).
+    const duplicateLabelScheme = scheme({
+      id: 'duplicate-label-scheme',
+      eligibility: [
+        group({
+          id: 'g1',
+          logic: 'ALL',
+          rules: [
+            rule({ id: 'r1', field: 'gender', operator: 'eq', value: 'female', label: 'Shared label' }),
+            rule({ id: 'r2', field: 'age', operator: 'gte', value: 18, label: 'Shared label' }),
+          ],
+        }),
+      ],
+    });
+    const alts = rankAlternatives({ gender: 'female', age: 25 }, [duplicateLabelScheme]);
+    expect(alts[0].topReasons).toEqual(['Shared label']);
+  });
 });
