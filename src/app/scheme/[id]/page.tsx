@@ -2,7 +2,7 @@
 
 import Link from 'next/link';
 import { useParams } from 'next/navigation';
-import { ArrowLeft, ExternalLink, Phone } from 'lucide-react';
+import { ArrowLeft } from 'lucide-react';
 import { getScheme } from '@/data/schemes';
 import type { Rule, Scheme } from '@/lib/types';
 import { useT } from '@/lib/i18n/strings';
@@ -10,6 +10,7 @@ import { BenefitCard } from '@/components/BenefitCard';
 import { SourceDrawer } from '@/components/SourceDrawer';
 import { JargonText } from '@/components/JargonText';
 import { ReadabilityStrip } from '@/components/ReadabilityStrip';
+import { ApplySteps } from '@/components/ApplySteps';
 
 // Looks up the Rule behind a whoCanApply/notFor bullet by matching its plain-language
 // label. Seed schemes are authored so these labels line up 1:1 with a rule.
@@ -140,40 +141,12 @@ export default function SchemeExplainerPage() {
       {/* 6. How to apply */}
       <section className="mb-6">
         <h2 className="mb-3 text-xl font-semibold text-ink">{t('howToApply')}</h2>
-        <ol className="space-y-3">
-          {summary.howToApply.map((step, i) => (
-            <li key={i} className="flex gap-3">
-              <span className="flex h-7 w-7 flex-none items-center justify-center rounded-full bg-ink text-sm font-semibold text-paper">
-                {i + 1}
-              </span>
-              <div>
-                <p className="font-medium text-ink">
-                  <JargonText text={step.title} jargon={scheme.jargon} />
-                </p>
-                <p className="text-sm text-slate">
-                  <JargonText text={step.detail} jargon={scheme.jargon} />
-                </p>
-              </div>
-            </li>
-          ))}
-        </ol>
-        <div className="mt-4 flex flex-wrap gap-4 text-sm">
-          {summary.officialUrl && (
-            <a
-              href={summary.officialUrl}
-              target="_blank"
-              rel="noreferrer"
-              className="inline-flex items-center gap-1 text-marigold underline"
-            >
-              <ExternalLink size={14} aria-hidden="true" /> {t('officialWebsite')}
-            </a>
-          )}
-          {summary.helpline && (
-            <a href={`tel:${summary.helpline}`} className="inline-flex items-center gap-1 text-marigold underline">
-              <Phone size={14} aria-hidden="true" /> {summary.helpline}
-            </a>
-          )}
-        </div>
+        <ApplySteps
+          steps={summary.howToApply}
+          jargon={scheme.jargon}
+          officialUrl={summary.officialUrl}
+          helpline={summary.helpline}
+        />
       </section>
 
       {/* 7. Not clear in the document */}

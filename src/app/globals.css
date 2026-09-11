@@ -75,8 +75,24 @@ h6 {
   outline-offset: 2px;
 }
 
-/* The verdict stamp (Section 9.4) is the only decorative motion in the app;
-   this still guards any future transition/animation against motion sensitivity. */
+/* The verdict stamp's one-time "settle" on first reveal (Section 9.4) -- the only
+   decorative motion in the app. */
+@keyframes stamp-in {
+  from {
+    transform: scale(1.15);
+    opacity: 0;
+  }
+  to {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+.animate-stamp-in {
+  animation: stamp-in 180ms ease-out;
+}
+
+/* This still guards any future transition/animation against motion sensitivity. */
 @media (prefers-reduced-motion: reduce) {
   *,
   *::before,

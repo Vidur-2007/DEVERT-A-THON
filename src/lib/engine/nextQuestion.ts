@@ -32,23 +32,37 @@ function customQuestionText(rule: Rule | undefined, fallback: string): string {
   return rule.customQuestion.en ?? fallback;
 }
 
+export interface NextQuestionSkip {
+  /** Fields the wizard has already asked and the citizen answered "I don't know" to. */
+  fields?: FieldKey[];
+  /** Custom yes/no questions (by customKey) answered "I don't know" to. */
+  custom?: string[];
+}
+
 /**
  * Picks the single best next question for `scheme`, given what's already known
  * about `profile`. `library` (defaults to just this scheme) is used for the
  * "other schemes that also use this field" bonus, which helps the /discover flow.
+ * `skip` excludes fields/custom questions the citizen already said "I don't know"
+ * to this session, without changing their profile value (they must stay UNKNOWN).
  * Returns null once the verdict is decided or nothing is left to ask.
  */
 export function nextQuestion(
   scheme: Scheme,
   profile: CitizenProfile,
   library: Scheme[] = [scheme],
+  skip?: NextQuestionSkip,
 ): NextQuestion | null {
   const evaluation = evaluateScheme(scheme, profile);
   if (evaluation.verdict === 'ELIGIBLE' || evaluation.verdict === 'NOT_ELIGIBLE') return null;
 
+  const skipFields = new Set(skip?.fields ?? []);
+  const skipCustom = new Set(skip?.custom ?? []);
+
   let best: (NextQuestion & { cost: number }) | null = null;
 
   for (const field of evaluation.missingFields) {
+    if (skipFields.has(field)) continue;
     const inScheme = fieldWeightInScheme(field, scheme);
     const otherSchemes = library.filter((s) => s.id !== scheme.id && fieldWeightInScheme(field, s) > 0).length;
     const score = inScheme + 0.5 * otherSchemes;
@@ -59,6 +73,7 @@ export function nextQuestion(
   }
 
   for (const customKey of evaluation.missingCustom) {
+    if (skipCustom.has(customKey)) continue;
     const inScheme = customWeightInScheme(customKey, scheme);
     const otherSchemes = library.filter(
       (s) => s.id !== scheme.id && customWeightInScheme(customKey, s) > 0,

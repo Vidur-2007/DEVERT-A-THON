@@ -125,6 +125,187 @@ export const STRINGS = {
     te: 'మీరే తనిఖీ చేయండి',
     ta: 'நீங்களே சரிபார்க்கவும்',
   },
+
+  // Eligibility check wizard (8.3)
+  yes: { en: 'Yes', hi: 'हां', te: 'అవును', ta: 'ஆம்' },
+  no: { en: 'No', hi: 'नहीं', te: 'కాదు', ta: 'இல்லை' },
+  back: { en: 'Back', hi: 'पीछे', te: 'వెనుకకు', ta: 'பின் செல்' },
+  iDontKnow: {
+    en: "I don't know",
+    hi: 'मुझे नहीं पता',
+    te: 'నాకు తెలియదు',
+    ta: 'எனக்குத் தெரியாது',
+  },
+  showMyResultNow: {
+    en: 'Show my result now',
+    hi: 'अभी मेरा परिणाम दिखाएं',
+    te: 'ఇప్పుడే నా ఫలితం చూపించు',
+    ta: 'இப்போதே என் முடிவைக் காட்டு',
+  },
+  staysOnYourPhone: {
+    en: 'Optional, stays on your phone',
+    hi: 'वैकल्पिक, आपके फोन में ही रहेगा',
+    te: 'ఐచ్ఛికం, మీ ఫోన్‌లోనే ఉంటుంది',
+    ta: 'விருப்பத்தேர்வு, உங்கள் மொபைலிலேயே இருக்கும்',
+  },
+  otherAmount: {
+    en: 'Or type an amount',
+    hi: 'या राशि टाइप करें',
+    te: 'లేదా మొత్తాన్ని టైప్ చేయండి',
+    ta: 'அல்லது தொகையை தட்டச்சு செய்யவும்',
+  },
+  continueLabel: { en: 'Continue', hi: 'आगे बढ़ें', te: 'కొనసాగించు', ta: 'தொடரவும்' },
+  usingWhatYouToldUsBefore: {
+    en: 'Using what you told us before',
+    hi: 'आपने पहले जो बताया था उसका उपयोग कर रहे हैं',
+    te: 'మీరు ముందు చెప్పినదాన్ని ఉపయోగిస్తున్నాము',
+    ta: 'நீங்கள் முன்பு கூறியதைப் பயன்படுத்துகிறோம்',
+  },
+  editProfile: { en: 'Edit', hi: 'बदलें', te: 'మార్చు', ta: 'திருத்து' },
+  liveCriteriaHeading: {
+    en: 'Your progress so far',
+    hi: 'अब तक की स्थिति',
+    te: 'ఇప్పటివరకు మీ స్థితి',
+    ta: 'இதுவரை நிலை',
+  },
+  moreQuestionsSingular: {
+    en: 'About {count} more question',
+    hi: 'लगभग {count} और सवाल',
+    te: 'దాదాపు {count} మరో ప్రశ్న',
+    ta: 'சுமார் {count} மேலும் கேள்வி',
+  },
+  moreQuestionsPlural: {
+    en: 'About {count} more questions',
+    hi: 'लगभग {count} और सवाल',
+    te: 'దాదాపు {count} మరో ప్రశ్నలు',
+    ta: 'சுமார் {count} மேலும் கேள்விகள்',
+  },
+
+  // Result page (8.4)
+  confidenceMeter: {
+    en: 'Based on {known} of {total} rules',
+    hi: '{total} में से {known} नियमों के आधार पर',
+    te: '{total} నియమాలలో {known} ఆధారంగా',
+    ta: '{total} விதிகளில் {known} அடிப்படையில்',
+  },
+  youMeet: {
+    en: 'You meet',
+    hi: 'आप इन पर खरे उतरते हैं',
+    te: 'మీరు వీటిని అందుకుంటున్నారు',
+    ta: 'நீங்கள் இவற்றை பூர்த்தி செய்கிறீர்கள்',
+  },
+  youDontMeet: {
+    en: "You don't meet",
+    hi: 'आप इन पर खरे नहीं उतरते',
+    te: 'మీరు వీటిని అందుకోలేదు',
+    ta: 'நீங்கள் இவற்றை பூர்த்தி செய்யவில்லை',
+  },
+  weStillNeedToKnow: {
+    en: 'We still need to know',
+    hi: 'हमें अभी और जानकारी चाहिए',
+    te: 'మాకు ఇంకా తెలియాల్సింది ఉంది',
+    ta: 'எங்களுக்கு இன்னும் தெரிய வேண்டியவை',
+  },
+  seeTheRule: { en: 'See the rule', hi: 'नियम देखें', te: 'నియమం చూడండి', ta: 'விதியைப் பார்க்கவும்' },
+  exclusionTag: { en: 'Exclusion', hi: 'अपवाद', te: 'మినహాయింపు', ta: 'விலக்கு' },
+  srMet: { en: 'Met', hi: 'पूरा हुआ', te: 'నెరవేరింది', ta: 'பூர்த்தியானது' },
+  srNotMet: { en: 'Not met', hi: 'पूरा नहीं हुआ', te: 'నెరవేరలేదు', ta: 'பூர்த்தியாகவில்லை' },
+  srUnknown: { en: 'Unknown', hi: 'अज्ञात', te: 'తెలియదు', ta: 'தெரியவில்லை' },
+  iHaveThis: { en: 'I have this', hi: 'मेरे पास है', te: 'నా వద్ద ఉంది', ta: 'என்னிடம் உள்ளது' },
+  iHaveThisChecked: { en: 'Got it ✓', hi: 'मिल गया ✓', te: 'ఉంది ✓', ta: 'உள்ளது ✓' },
+  readinessMeter: {
+    en: '{ready} of {total} ready',
+    hi: '{total} में से {ready} तैयार',
+    te: '{total}లో {ready} సిద్ధంగా ఉన్నాయి',
+    ta: '{total}இல் {ready} தயார்',
+  },
+  otherSchemesForYou: {
+    en: 'Other schemes for you',
+    hi: 'आपके लिए अन्य योजनाएं',
+    te: 'మీ కోసం ఇతర పథకాలు',
+    ta: 'உங்களுக்கான பிற திட்டங்கள்',
+  },
+  open: { en: 'Open', hi: 'खोलें', te: 'తెరువు', ta: 'திற' },
+  disclaimerText: {
+    en: 'This is a guide, not an official decision. Final approval is by the government office.',
+    hi: 'यह एक मार्गदर्शिका है, आधिकारिक निर्णय नहीं। अंतिम मंजूरी सरकारी कार्यालय द्वारा दी जाती है।',
+    te: 'ఇది ఒక మార్గదర్శిని మాత్రమే, అధికారిక నిర్ణయం కాదు. తుది ఆమోదం ప్రభుత్వ కార్యాలయం ఇస్తుంది.',
+    ta: 'இது ஒரு வழிகாட்டி மட்டுமே, அதிகாரப்பூர்வ முடிவு அல்ல. இறுதி ஒப்புதல் அரசு அலுவலகத்தால் வழங்கப்படும்.',
+  },
+  backToScheme: {
+    en: 'Back to scheme details',
+    hi: 'योजना विवरण पर वापस जाएं',
+    te: 'పథక వివరాలకు తిరిగి వెళ్ళండి',
+    ta: 'திட்ட விவரங்களுக்குத் திரும்பு',
+  },
+  verdictEligible: { en: 'Eligible', hi: 'पात्र', te: 'అర్హులు', ta: 'தகுதியானவர்' },
+  verdictLikelyEligible: {
+    en: 'Likely eligible',
+    hi: 'संभावित रूप से पात्र',
+    te: 'అర్హత ఉండవచ్చు',
+    ta: 'தகுதி இருக்கலாம்',
+  },
+  verdictNeedMoreInfo: {
+    en: 'Need more info',
+    hi: 'अधिक जानकारी चाहिए',
+    te: 'మరింత సమాచారం కావాలి',
+    ta: 'மேலும் தகவல் தேவை',
+  },
+  verdictNotEligible: { en: 'Not eligible', hi: 'अपात्र', te: 'అనర్హులు', ta: 'தகுதியற்றவர்' },
+
+  // Template explanation (7.3 EXPLAIN_SYSTEM shape, built without an LLM)
+  explainEligible: {
+    en: 'Based on what you told us, you are eligible for {scheme}.',
+    hi: 'आपने जो बताया उसके आधार पर, आप {scheme} के लिए पात्र हैं।',
+    te: 'మీరు చెప్పిన దాని ఆధారంగా, మీరు {scheme} కోసం అర్హులు.',
+    ta: 'நீங்கள் கூறியதன் அடிப்படையில், நீங்கள் {scheme} திட்டத்திற்கு தகுதியானவர்.',
+  },
+  explainLikely: {
+    en: 'Based on what you told us, you are likely eligible for {scheme}.',
+    hi: 'आपने जो बताया उसके आधार पर, आप शायद {scheme} के लिए पात्र हैं।',
+    te: 'మీరు చెప్పిన దాని ఆధారంగా, మీరు {scheme} కోసం అర్హులు కావచ్చు.',
+    ta: 'நீங்கள் கூறியதன் அடிப்படையில், நீங்கள் {scheme} திட்டத்திற்கு தகுதி பெறலாம்.',
+  },
+  explainNeedInfo: {
+    en: 'We need a little more information to be sure about {scheme}.',
+    hi: '{scheme} के बारे में निश्चित होने के लिए हमें थोड़ी और जानकारी चाहिए।',
+    te: '{scheme} గురించి ఖచ్చితంగా తెలుసుకోవడానికి మాకు కొంచెం ఎక్కువ సమాచారం కావాలి.',
+    ta: '{scheme} பற்றி உறுதியாகத் தெரிந்துகொள்ள எங்களுக்கு இன்னும் கொஞ்சம் தகவல் தேவை.',
+  },
+  explainNotEligible: {
+    en: 'Based on what you told us, you are not eligible for {scheme} right now.',
+    hi: 'आपने जो बताया उसके आधार पर, आप अभी {scheme} के लिए पात्र नहीं हैं।',
+    te: 'మీరు చెప్పిన దాని ఆధారంగా, మీరు ప్రస్తుతం {scheme} కోసం అర్హులు కాదు.',
+    ta: 'நீங்கள் கூறியதன் அடிப்படையில், நீங்கள் தற்போது {scheme} திட்டத்திற்கு தகுதியற்றவர்.',
+  },
+  explainReasonsMet: {
+    en: 'You meet: {list}.',
+    hi: 'आप इन पर खरे उतरते हैं: {list}।',
+    te: 'మీరు వీటిని అందుకుంటున్నారు: {list}.',
+    ta: 'நீங்கள் இவற்றை பூர்த்தி செய்கிறீர்கள்: {list}.',
+  },
+  explainMainReason: {
+    en: 'The main reason: {reason}.',
+    hi: 'मुख्य कारण: {reason}।',
+    te: 'ప్రధాన కారణం: {reason}.',
+    ta: 'முக்கிய காரணம்: {reason}.',
+  },
+  explainNextMissing: {
+    en: 'Answer {count} more question(s) to get a fuller picture.',
+    hi: 'पूरी जानकारी पाने के लिए {count} और सवालों के जवाब दें।',
+    te: 'పూర్తి చిత్రం పొందడానికి {count} మరిన్ని ప్రశ్నలకు సమాధానం ఇవ్వండి.',
+    ta: 'முழுமையான படத்தைப் பெற {count} மேலும் கேள்விகளுக்குப் பதிலளிக்கவும்.',
+  },
+  explainNextDocuments: {
+    en: 'Next, gather your documents and apply.',
+    hi: 'अब, अपने कागज़ात इकट्ठा करें और आवेदन करें।',
+    te: 'తర్వాత, మీ పత్రాలు సేకరించి దరఖాస్తు చేయండి.',
+    ta: 'அடுத்து, உங்கள் ஆவணங்களைச் சேகரித்து விண்ணப்பிக்கவும்.',
+  },
+
+  // Number field units (used with quick-pick chips)
+  unitAcres: { en: 'acres', hi: 'एकड़', te: 'ఎకరాలు', ta: 'ஏக்கர்' },
+  unitPeople: { en: 'people', hi: 'लोग', te: 'మంది', ta: 'பேர்' },
 } satisfies Record<string, Record<Lang, string>>;
 
 export type StringKey = keyof typeof STRINGS;
@@ -137,4 +318,19 @@ export function t(lang: Lang, key: StringKey): string {
 export function useT(): (key: StringKey) => string {
   const { lang } = useLang();
   return (key: StringKey) => t(lang, key);
+}
+
+/** Translate a templated string, replacing {name} placeholders with `vars`. */
+export function tf(lang: Lang, key: StringKey, vars: Record<string, string | number>): string {
+  let result = t(lang, key);
+  for (const [name, value] of Object.entries(vars)) {
+    result = result.replaceAll(`{${name}}`, String(value));
+  }
+  return result;
+}
+
+/** Returns a templated-translate function bound to the current language from context. */
+export function useTf(): (key: StringKey, vars: Record<string, string | number>) => string {
+  const { lang } = useLang();
+  return (key: StringKey, vars: Record<string, string | number>) => tf(lang, key, vars);
 }

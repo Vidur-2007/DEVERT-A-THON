@@ -9,25 +9,38 @@ interface SourceDrawerProps {
   label: string;
   sourceQuote: string;
   verified?: boolean;
+  /** 'icon' (default): a bare quote icon, used in the Explainer. 'link': a visible
+   * "See the rule" text link, used in the Result breakdown (SPEC 8.4 item 3). */
+  variant?: 'icon' | 'link';
 }
 
 // Verbatim quote + automatic verification badge for one rule.
 // Every eligibility/exclusion row links to one of these. See SPEC.md Section 8.2 and 7.2 step 8.
-export function SourceDrawer({ label, sourceQuote, verified }: SourceDrawerProps) {
+export function SourceDrawer({ label, sourceQuote, verified, variant = 'icon' }: SourceDrawerProps) {
   const [open, setOpen] = useState(false);
   const t = useT();
 
   return (
     <>
-      <button
-        type="button"
-        onClick={() => setOpen(true)}
-        aria-label={t('showSource')}
-        title={t('showSource')}
-        className="inline-flex h-8 w-8 flex-none items-center justify-center rounded-full text-slate hover:bg-ink/5 focus-visible:outline-none"
-      >
-        <Quote size={16} aria-hidden="true" />
-      </button>
+      {variant === 'icon' ? (
+        <button
+          type="button"
+          onClick={() => setOpen(true)}
+          aria-label={t('showSource')}
+          title={t('showSource')}
+          className="inline-flex h-8 w-8 flex-none items-center justify-center rounded-full text-slate hover:bg-ink/5 focus-visible:outline-none"
+        >
+          <Quote size={16} aria-hidden="true" />
+        </button>
+      ) : (
+        <button
+          type="button"
+          onClick={() => setOpen(true)}
+          className="inline-flex flex-none items-center gap-1 whitespace-nowrap text-sm font-medium text-marigold underline focus-visible:outline-none"
+        >
+          <Quote size={14} aria-hidden="true" /> {t('seeTheRule')}
+        </button>
+      )}
 
       {open && (
         <div

@@ -180,4 +180,52 @@ describe('nextQuestion', () => {
     const s = scheme({ id: 's1', eligibility: [] });
     expect(nextQuestion(s, {})).toBeNull();
   });
+
+  it('skip excludes a field from consideration without touching the profile ("I don\'t know")', () => {
+    const s = scheme({
+      id: 's1',
+      eligibility: [
+        group({
+          id: 'g1',
+          logic: 'ALL',
+          rules: [
+            rule({ id: 'r1', field: 'ownsAgriLand', operator: 'is_true' }),
+            rule({ id: 'r2', field: 'age', operator: 'gte', value: 18 }),
+          ],
+        }),
+      ],
+    });
+    // ownsAgriLand would normally win (both are ALL-group boolean/number weight-3 fields,
+    // boolean beats number on the type-cost tiebreak) -- skip it and expect the other field.
+    const q = nextQuestion(s, {}, [s], { fields: ['ownsAgriLand'] });
+    expect(q).toEqual(expect.objectContaining({ kind: 'field', field: 'age' }));
+  });
+
+  it('skip on a custom question falls through to the next-best question', () => {
+    const s = scheme({
+      id: 's1',
+      eligibility: [
+        group({
+          id: 'g1',
+          logic: 'ALL',
+          rules: [
+            rule({ id: 'r1', field: 'custom', customKey: 'ck1', operator: 'is_true' }),
+            rule({ id: 'r2', field: 'hasBankAccount', operator: 'is_true' }),
+          ],
+        }),
+      ],
+    });
+    const q = nextQuestion(s, {}, [s], { custom: ['ck1'] });
+    expect(q).toEqual(expect.objectContaining({ kind: 'field', field: 'hasBankAccount' }));
+  });
+
+  it('skipping every remaining unknown returns null', () => {
+    const s = scheme({
+      id: 's1',
+      eligibility: [
+        group({ id: 'g1', logic: 'ALL', rules: [rule({ id: 'r1', field: 'ownsAgriLand', operator: 'is_true' })] }),
+      ],
+    });
+    expect(nextQuestion(s, {}, [s], { fields: ['ownsAgriLand'] })).toBeNull();
+  });
 });
