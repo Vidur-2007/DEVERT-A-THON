@@ -469,6 +469,16 @@ export const STRINGS = {
     te: 'ప్రస్తుతం వాయిస్ ఇన్‌పుట్ అందుబాటులో లేదు — దయచేసి టైప్ చేయండి లేదా నొక్కండి.',
     ta: 'தற்போது குரல் உள்ளீடு கிடைக்கவில்லை — தட்டச்சு செய்யவும் அல்லது தட்டவும்.',
   },
+
+  // What-if chips (8.4 item 4)
+  whatIfHeading: { en: 'What if?', hi: 'अगर ऐसा हो तो?', te: 'ఇలా అయితే?', ta: 'இப்படி இருந்தால்?' },
+  tryThisValue: {
+    en: 'Try: {value}',
+    hi: 'आज़माएं: {value}',
+    te: 'ప్రయత్నించండి: {value}',
+    ta: 'முயற்சிக்கவும்: {value}',
+  },
+  whatIfResult: { en: '→ {verdict}', hi: '→ {verdict}', te: '→ {verdict}', ta: '→ {verdict}' },
 } satisfies Record<string, Record<Lang, string>>;
 
 export type StringKey = keyof typeof STRINGS;

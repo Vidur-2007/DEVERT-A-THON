@@ -25,6 +25,8 @@ import { ApplySteps } from '@/components/ApplySteps';
 import { AltSchemeCard } from '@/components/AltSchemeCard';
 import { Disclaimer } from '@/components/Disclaimer';
 import { SpeakButton } from '@/components/SpeakButton';
+import { WhatIfChips } from '@/components/WhatIfChips';
+import { buildWhatIfSuggestion, type WhatIfSuggestion } from '@/lib/whatIf';
 
 type HistoryEntry =
   | { type: 'answer-field'; field: FieldKey }
@@ -340,6 +342,9 @@ export default function EligibilityCheckPage() {
   const unknown = allResults.filter((r) => r.status === 'UNKNOWN');
   const totalRules = allResults.length;
   const knownRules = allResults.filter((r) => r.status !== 'UNKNOWN').length;
+  const whatIfSuggestions = notMet
+    .map((r) => buildWhatIfSuggestion(r.rule, profile))
+    .filter((s): s is WhatIfSuggestion => s !== null);
   const explanation =
     llmExplanation ??
     buildTemplateExplanation(buildExplainPayload(scheme, evaluation, alternatives, labelFor), lang);
@@ -424,6 +429,9 @@ export default function EligibilityCheckPage() {
           </div>
         )}
       </section>
+
+      {/* 4. What if? */}
+      <WhatIfChips scheme={scheme} profile={profile} suggestions={whatIfSuggestions} labelFor={labelFor} />
 
       {/* 5. Papers checklist */}
       <section className="mb-6">
