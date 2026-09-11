@@ -69,7 +69,7 @@ const ApplyStepSchema = z.object({
   detail: z.string().min(1),
 });
 
-const SummarySchema = z.object({
+export const SummarySchema = z.object({
   oneLiner: z.string().min(1),
   whatIsIt: z.string().min(1),
   benefits: z.array(BenefitSchema),
@@ -165,6 +165,13 @@ export const ProfileParseResultSchema = z.object({
   unclear: z.array(z.string()),
 });
 export type ProfileParseResult = z.infer<typeof ProfileParseResultSchema>;
+
+// /api/translate -- Scheme['summary'] plus a rule-id -> translated-label map (matches
+// the `translations` field's shape on Scheme, SPEC Section 6.3).
+export const TranslatableContentSchema = SummarySchema.extend({
+  ruleLabels: z.record(z.string(), z.string()),
+});
+export type TranslatableContent = z.infer<typeof TranslatableContentSchema>;
 
 // Re-exported so callers don't need to reach into fields.ts just for this.
 export { FIELD_KEY_TUPLE };

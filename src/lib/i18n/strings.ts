@@ -406,6 +406,14 @@ export const STRINGS = {
     te: 'మీరు అప్‌లోడ్ చేసిన పథకాలు',
     ta: 'நீங்கள் பதிவேற்றிய திட்டங்கள்',
   },
+
+  // Translation fallback (7.4)
+  translationUnavailable: {
+    en: 'Translation unavailable right now — showing English.',
+    hi: 'अभी अनुवाद उपलब्ध नहीं है — अंग्रेज़ी दिखाई जा रही है।',
+    te: 'ప్రస్తుతం అనువాదం అందుబాటులో లేదు — ఆంగ్లంలో చూపిస్తున్నాము.',
+    ta: 'தற்போது மொழிபெயர்ப்பு கிடைக்கவில்லை — ஆங்கிலத்தில் காட்டுகிறோம்.',
+  },
 } satisfies Record<string, Record<Lang, string>>;
 
 export type StringKey = keyof typeof STRINGS;

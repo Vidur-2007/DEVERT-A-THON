@@ -11,6 +11,7 @@ import { useLang } from '@/lib/i18n/useLang';
 import { useT, useTf } from '@/lib/i18n/strings';
 import { getStoredProfile, saveProfile, clearProfile } from '@/lib/storage';
 import { useSchemeById, useSchemeLibrary } from '@/lib/useSchemeLibrary';
+import { useTranslatedScheme } from '@/lib/useTranslatedScheme';
 import { formatQuickPickLabel } from '@/lib/format';
 import { buildTemplateExplanation } from '@/lib/explainTemplate';
 import { buildExplainPayload } from '@/lib/explainPayload';
@@ -51,6 +52,11 @@ export default function EligibilityCheckPage() {
   const { id } = useParams<{ id: string }>();
   const { scheme, checked } = useSchemeById(id);
   const schemeLibrary = useSchemeLibrary();
+  const {
+    summary: translatedSummary,
+    labelFor,
+    unavailable: translationFailed,
+  } = useTranslatedScheme(scheme);
   const { lang } = useLang();
   const t = useT();
   const tf = useTf();
@@ -113,7 +119,7 @@ export default function EligibilityCheckPage() {
     // (computed fresh from `evaluation` at render time) covers the gap until this resolves.
     // eslint-disable-next-line react-hooks/set-state-in-effect -- resetting before a new fetch, not deriving state from props
     setLlmExplanation(null);
-    const payload = buildExplainPayload(scheme, evaluation, alternatives);
+    const payload = buildExplainPayload(scheme, evaluation, alternatives, labelFor);
     fetch('/api/explain', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
@@ -129,7 +135,7 @@ export default function EligibilityCheckPage() {
     return () => {
       cancelled = true;
     };
-  }, [showWizard, scheme, evaluation, alternatives, lang]);
+  }, [showWizard, scheme, evaluation, alternatives, lang, labelFor]);
 
   if (!scheme || !evaluation) {
     // Not yet checked (could still be an uploaded scheme found in localStorage) -> stay
@@ -312,7 +318,9 @@ export default function EligibilityCheckPage() {
   const unknown = allResults.filter((r) => r.status === 'UNKNOWN');
   const totalRules = allResults.length;
   const knownRules = allResults.filter((r) => r.status !== 'UNKNOWN').length;
-  const explanation = llmExplanation ?? buildTemplateExplanation(buildExplainPayload(scheme, evaluation, alternatives), lang);
+  const explanation =
+    llmExplanation ??
+    buildTemplateExplanation(buildExplainPayload(scheme, evaluation, alternatives, labelFor), lang);
 
   return (
     <div className="mx-auto max-w-[720px] px-4 pb-16 pt-6">
@@ -329,9 +337,10 @@ export default function EligibilityCheckPage() {
         <p className="mt-3 text-sm text-slate">{tf('confidenceMeter', { known: knownRules, total: totalRules })}</p>
       </div>
 
-      {/* 2. Personal explanation (template, no LLM in this phase) */}
+      {/* 2. Personal explanation */}
       <section className="mb-6 rounded-xl border border-ink/10 bg-white p-4 text-base text-ink">
         <p>{explanation}</p>
+        {translationFailed && <p className="mt-2 text-xs text-haldi">{t('translationUnavailable')}</p>}
       </section>
 
       {/* 3. Why -- criteria breakdown */}
@@ -343,7 +352,7 @@ export default function EligibilityCheckPage() {
               {met.map((r) => (
                 <CriterionRow
                   key={r.rule.id}
-                  label={r.rule.label}
+                  label={labelFor(r.rule)}
                   status={r.status}
                   kind={r.kind}
                   sourceQuote={r.rule.sourceQuote}
@@ -360,7 +369,7 @@ export default function EligibilityCheckPage() {
               {notMet.map((r) => (
                 <CriterionRow
                   key={r.rule.id}
-                  label={r.rule.label}
+                  label={labelFor(r.rule)}
                   status={r.status}
                   kind={r.kind}
                   nearMiss={r.nearMiss}
@@ -378,7 +387,7 @@ export default function EligibilityCheckPage() {
               {unknown.map((r) => (
                 <CriterionRow
                   key={r.rule.id}
-                  label={r.rule.label}
+                  label={labelFor(r.rule)}
                   status={r.status}
                   kind={r.kind}
                   sourceQuote={r.rule.sourceQuote}
@@ -394,17 +403,17 @@ export default function EligibilityCheckPage() {
       {/* 5. Papers checklist */}
       <section className="mb-6">
         <h2 className="mb-3 text-xl font-semibold text-ink">{t('papersYouNeed')}</h2>
-        <DocChecklist documents={scheme.summary.documents} />
+        <DocChecklist documents={translatedSummary.documents} />
       </section>
 
       {/* 6. How to apply */}
       <section className="mb-6">
         <h2 className="mb-3 text-xl font-semibold text-ink">{t('howToApply')}</h2>
         <ApplySteps
-          steps={scheme.summary.howToApply}
+          steps={translatedSummary.howToApply}
           jargon={scheme.jargon}
-          officialUrl={scheme.summary.officialUrl}
-          helpline={scheme.summary.helpline}
+          officialUrl={translatedSummary.officialUrl}
+          helpline={translatedSummary.helpline}
         />
       </section>
 

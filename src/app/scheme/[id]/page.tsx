@@ -5,6 +5,7 @@ import { useParams } from 'next/navigation';
 import { ArrowLeft } from 'lucide-react';
 import type { Rule, Scheme } from '@/lib/types';
 import { useSchemeById } from '@/lib/useSchemeLibrary';
+import { useTranslatedScheme } from '@/lib/useTranslatedScheme';
 import { useT } from '@/lib/i18n/strings';
 import { BenefitCard } from '@/components/BenefitCard';
 import { SourceDrawer } from '@/components/SourceDrawer';
@@ -13,7 +14,9 @@ import { ReadabilityStrip } from '@/components/ReadabilityStrip';
 import { ApplySteps } from '@/components/ApplySteps';
 
 // Looks up the Rule behind a whoCanApply/notFor bullet by matching its plain-language
-// label. Seed schemes are authored so these labels line up 1:1 with a rule.
+// *English* label (seed schemes are authored so these labels line up 1:1 with a rule) --
+// callers must pass the original English item, not a translated one, since rule.label
+// is never translated.
 function findRuleForLabel(scheme: Scheme, label: string): Rule | undefined {
   for (const group of scheme.eligibility) {
     const rule = group.rules.find((r) => r.label === label);
@@ -31,6 +34,7 @@ export default function SchemeExplainerPage() {
   const { id } = useParams<{ id: string }>();
   const t = useT();
   const { scheme, checked } = useSchemeById(id);
+  const { summary, unavailable: translationFailed } = useTranslatedScheme(scheme);
 
   if (!scheme) {
     // Not yet checked (could still be an uploaded scheme found in localStorage) -> stay
@@ -46,7 +50,6 @@ export default function SchemeExplainerPage() {
     );
   }
 
-  const { summary } = scheme;
   const simplifiedWordCount = summary.whatIsIt.split(/\s+/).filter(Boolean).length;
 
   return (
@@ -62,6 +65,7 @@ export default function SchemeExplainerPage() {
         </span>
         <h1 className="mt-2 text-3xl font-bold text-ink">{scheme.name}</h1>
         {scheme.ministry && <p className="mt-1 text-sm text-slate">{scheme.ministry}</p>}
+        {translationFailed && <p className="mt-2 text-xs text-haldi">{t('translationUnavailable')}</p>}
       </header>
 
       {/* 2. In simple words */}
@@ -91,7 +95,7 @@ export default function SchemeExplainerPage() {
           <h2 className="mb-3 text-xl font-semibold text-leaf">{t('whoCanApply')}</h2>
           <ul className="space-y-2">
             {summary.whoCanApply.map((item, i) => {
-              const rule = findRuleForLabel(scheme, item);
+              const rule = findRuleForLabel(scheme, scheme.summary.whoCanApply[i] ?? item);
               return (
                 <li
                   key={i}
@@ -108,7 +112,7 @@ export default function SchemeExplainerPage() {
           <h2 className="mb-3 text-xl font-semibold text-sindoor">{t('whoCannotApply')}</h2>
           <ul className="space-y-2">
             {summary.notFor.map((item, i) => {
-              const rule = findExclusionForLabel(scheme, item);
+              const rule = findExclusionForLabel(scheme, scheme.summary.notFor[i] ?? item);
               return (
                 <li
                   key={i}

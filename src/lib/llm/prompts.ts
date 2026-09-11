@@ -145,3 +145,14 @@ Return {"profile": {...}, "unclear": ["things mentioned but ambiguous"]}.`;
 export function buildProfileParseUserPrompt(text: string): string {
   return text;
 }
+
+export function buildTranslateSystem(lang: Lang): string {
+  const languageName = LANGUAGE_NAMES[lang];
+  return `Translate the JSON values (not keys) into ${languageName} for rural citizens: simple everyday words,
+not formal/Sanskritised vocabulary. Keep numbers, ₹ amounts, scheme names, URLs unchanged.
+Return the same JSON shape.`;
+}
+
+export function buildTranslateUserPrompt(payload: unknown): string {
+  return JSON.stringify(payload);
+}
