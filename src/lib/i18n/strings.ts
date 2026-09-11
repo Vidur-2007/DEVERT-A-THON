@@ -306,6 +306,106 @@ export const STRINGS = {
   // Number field units (used with quick-pick chips)
   unitAcres: { en: 'acres', hi: 'एकड़', te: 'ఎకరాలు', ta: 'ஏக்கர்' },
   unitPeople: { en: 'people', hi: 'लोग', te: 'మంది', ta: 'பேர்' },
+
+  // Upload page (8.1 /upload, 8.6 states)
+  uploadPageSubtitle: {
+    en: "We'll read the document, find the rules, and explain it simply — with every rule linked back to the original text.",
+    hi: 'हम दस्तावेज़ पढ़ेंगे, नियम ढूंढेंगे, और उसे आसान भाषा में समझाएंगे — हर नियम मूल पाठ से जुड़ा होगा।',
+    te: 'మేము పత్రాన్ని చదివి, నియమాలను కనుగొని, దాన్ని సులభంగా వివరిస్తాము — ప్రతి నియమం అసలు వచనానికి అనుసంధానించబడి ఉంటుంది.',
+    ta: 'நாங்கள் ஆவணத்தைப் படித்து, விதிகளைக் கண்டறிந்து, அதை எளிமையாக விளக்குவோம் — ஒவ்வொரு விதியும் மூல உரையுடன் இணைக்கப்பட்டிருக்கும்.',
+  },
+  choosePdfFile: {
+    en: 'Choose a PDF file',
+    hi: 'PDF फ़ाइल चुनें',
+    te: 'PDF ఫైల్‌ను ఎంచుకోండి',
+    ta: 'PDF கோப்பைத் தேர்ந்தெடுக்கவும்',
+  },
+  pdfSizeLimit: { en: 'Up to 4 MB', hi: 'अधिकतम 4 MB', te: 'గరిష్టంగా 4 MB', ta: 'அதிகபட்சம் 4 MB' },
+  or: { en: 'or', hi: 'या', te: 'లేదా', ta: 'அல்லது' },
+  pasteTextPlaceholder: {
+    en: 'Paste the scheme text here…',
+    hi: 'योजना का पाठ यहां चिपकाएं…',
+    te: 'పథక వచనాన్ని ఇక్కడ అతికించండి…',
+    ta: 'திட்ட உரையை இங்கே ஒட்டவும்…',
+  },
+  extractFromText: {
+    en: 'Explain this text',
+    hi: 'इस पाठ को समझाएं',
+    te: 'ఈ వచనాన్ని వివరించండి',
+    ta: 'இந்த உரையை விளக்கவும்',
+  },
+  trySample: {
+    en: 'Try a sample scheme',
+    hi: 'एक नमूना योजना आज़माएं',
+    te: 'ఒక నమూనా పథకాన్ని ప్రయత్నించండి',
+    ta: 'ஒரு மாதிரி திட்டத்தை முயற்சிக்கவும்',
+  },
+  browseLibraryInstead: {
+    en: 'Browse the scheme library instead',
+    hi: 'इसके बजाय योजना सूची देखें',
+    te: 'బదులుగా పథక జాబితాను చూడండి',
+    ta: 'அதற்கு பதிலாக திட்டப் பட்டியலைப் பார்க்கவும்',
+  },
+  extractionDoneTitle: {
+    en: 'Done! We turned it into a simple, checkable summary.',
+    hi: 'हो गया! हमने इसे आसान, जांचने योग्य सारांश में बदल दिया।',
+    te: 'పూర్తయింది! మేము దీన్ని సులభమైన, తనిఖీ చేయదగిన సారాంశంగా మార్చాము.',
+    ta: 'முடிந்தது! நாங்கள் அதை எளிய, சரிபார்க்கக்கூடிய சுருக்கமாக மாற்றினோம்.',
+  },
+  extractionStats: {
+    en: '{verified} of {total} rules verified against the original text',
+    hi: '{total} में से {verified} नियम मूल पाठ से सत्यापित',
+    te: '{total} నియమాలలో {verified} అసలు వచనంతో ధృవీకరించబడ్డాయి',
+    ta: '{total} விதிகளில் {verified} மூல உரையுடன் சரிபார்க்கப்பட்டது',
+  },
+  seeSimplifiedVersion: {
+    en: 'See the simplified version',
+    hi: 'आसान संस्करण देखें',
+    te: 'సరళీకృత వెర్షన్ చూడండి',
+    ta: 'எளிமையாக்கப்பட்ட பதிப்பைப் பார்க்கவும்',
+  },
+  stageReading: {
+    en: 'Reading the document…',
+    hi: 'दस्तावेज़ पढ़ रहे हैं…',
+    te: 'పత్రాన్ని చదువుతోంది…',
+    ta: 'ஆவணத்தைப் படிக்கிறது…',
+  },
+  stageFindingRules: {
+    en: 'Finding the rules…',
+    hi: 'नियम ढूंढ रहे हैं…',
+    te: 'నియమాలను కనుగొంటోంది…',
+    ta: 'விதிகளைக் கண்டறிகிறது…',
+  },
+  stageCheckingRules: {
+    en: 'Checking every rule against the text…',
+    hi: 'हर नियम को पाठ से जांच रहे हैं…',
+    te: 'ప్రతి నియమాన్ని వచనంతో తనిఖీ చేస్తోంది…',
+    ta: 'ஒவ்வொரு விதியையும் உரையுடன் சரிபார்க்கிறது…',
+  },
+  stageSimplifying: {
+    en: 'Writing it in simple words…',
+    hi: 'इसे आसान शब्दों में लिख रहे हैं…',
+    te: 'దీన్ని సులభమైన పదాలలో రాస్తోంది…',
+    ta: 'அதை எளிய வார்த்தைகளில் எழுதுகிறது…',
+  },
+  networkError: {
+    en: "We couldn't reach the server. Check your connection and try again.",
+    hi: 'हम सर्वर तक नहीं पहुंच सके। अपना कनेक्शन जांचें और फिर से कोशिश करें।',
+    te: 'మేము సర్వర్‌ను చేరుకోలేకపోయాము. మీ కనెక్షన్‌ని తనిఖీ చేసి మళ్లీ ప్రయత్నించండి.',
+    ta: 'எங்களால் சேவையகத்தை அடைய முடியவில்லை. உங்கள் இணைப்பைச் சரிபார்த்து மீண்டும் முயற்சிக்கவும்.',
+  },
+  genericError: {
+    en: 'Something went wrong. Please try again.',
+    hi: 'कुछ गलत हो गया। कृपया फिर से कोशिश करें।',
+    te: 'ఏదో తప్పు జరిగింది. దయచేసి మళ్లీ ప్రయత్నించండి.',
+    ta: 'ஏதோ தவறு நடந்தது. மீண்டும் முயற்சிக்கவும்.',
+  },
+  yourUploadedSchemes: {
+    en: 'Your uploaded schemes',
+    hi: 'आपके अपलोड किए गए दस्तावेज़',
+    te: 'మీరు అప్‌లోడ్ చేసిన పథకాలు',
+    ta: 'நீங்கள் பதிவேற்றிய திட்டங்கள்',
+  },
 } satisfies Record<string, Record<Lang, string>>;
 
 export type StringKey = keyof typeof STRINGS;

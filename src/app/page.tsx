@@ -1,14 +1,26 @@
 'use client';
 
+import { useEffect, useState } from 'react';
 import Link from 'next/link';
 import { ListChecks, Sparkles, Upload } from 'lucide-react';
 import { SCHEMES } from '@/data/schemes';
+import { getUploadedSchemes } from '@/lib/storage';
+import type { Scheme } from '@/lib/types';
 import { useT } from '@/lib/i18n/strings';
 
 // Landing page. SPEC.md Section 9.6: the hero *is* the product -- a big prompt,
 // three big actions, and a strip of library schemes below. No stats banner.
 export default function LandingPage() {
   const t = useT();
+  const [uploadedSchemes, setUploadedSchemes] = useState<Scheme[]>([]);
+
+  // Uploaded schemes only exist in this browser's localStorage, so they're added
+  // after mount -- same pattern as everywhere else localStorage-backed content appears.
+  useEffect(() => {
+    const uploaded = getUploadedSchemes();
+    // eslint-disable-next-line react-hooks/set-state-in-effect -- one-time localStorage read after mount
+    if (uploaded.length > 0) setUploadedSchemes(uploaded);
+  }, []);
 
   return (
     <div className="mx-auto max-w-[720px] px-4 py-10">
@@ -55,6 +67,23 @@ export default function LandingPage() {
           </span>
         </Link>
       </div>
+
+      {uploadedSchemes.length > 0 && (
+        <section className="mt-12">
+          <h2 className="mb-4 text-xl font-semibold text-ink">{t('yourUploadedSchemes')}</h2>
+          <div className="flex flex-wrap gap-2">
+            {uploadedSchemes.map((scheme) => (
+              <Link
+                key={scheme.id}
+                href={`/scheme/${scheme.id}`}
+                className="flex min-h-[48px] items-center rounded-full border border-ink/15 bg-white px-4 py-2 text-base text-ink transition hover:border-marigold hover:text-marigold focus-visible:outline-none"
+              >
+                {scheme.name}
+              </Link>
+            ))}
+          </div>
+        </section>
+      )}
 
       <section id="library" className="mt-12 scroll-mt-6">
         <h2 className="mb-4 text-xl font-semibold text-ink">{t('libraryHeading')}</h2>

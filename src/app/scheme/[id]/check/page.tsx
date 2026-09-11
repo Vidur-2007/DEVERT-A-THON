@@ -4,15 +4,16 @@ import { useEffect, useMemo, useState } from 'react';
 import Link from 'next/link';
 import { useParams } from 'next/navigation';
 import { ArrowLeft } from 'lucide-react';
-import { getScheme, SCHEMES } from '@/data/schemes';
 import type { CitizenProfile, FieldKey, Lang, Rule, Scheme } from '@/lib/types';
 import { evaluateScheme, nextQuestion, rankAlternatives, type NextQuestion } from '@/lib/engine';
 import { getFieldDef } from '@/lib/fields';
 import { useLang } from '@/lib/i18n/useLang';
 import { useT, useTf } from '@/lib/i18n/strings';
 import { getStoredProfile, saveProfile, clearProfile } from '@/lib/storage';
+import { useSchemeById, useSchemeLibrary } from '@/lib/useSchemeLibrary';
 import { formatQuickPickLabel } from '@/lib/format';
 import { buildTemplateExplanation } from '@/lib/explainTemplate';
+import { buildExplainPayload } from '@/lib/explainPayload';
 import { QuestionCard } from '@/components/QuestionCard';
 import { CriteriaPanel } from '@/components/CriteriaPanel';
 import { CriterionRow } from '@/components/CriterionRow';
@@ -48,7 +49,8 @@ function resolveCustomQuestionText(rule: Rule | undefined, lang: Lang, fallback:
 // Eligibility check: question wizard (8.3) then result (8.4), same route, phase switch.
 export default function EligibilityCheckPage() {
   const { id } = useParams<{ id: string }>();
-  const scheme = getScheme(id);
+  const { scheme, checked } = useSchemeById(id);
+  const schemeLibrary = useSchemeLibrary();
   const { lang } = useLang();
   const t = useT();
   const tf = useTf();
@@ -64,6 +66,7 @@ export default function EligibilityCheckPage() {
   const [skippedFields, setSkippedFields] = useState<FieldKey[]>([]);
   const [skippedCustom, setSkippedCustom] = useState<string[]>([]);
   const [manualQuestion, setManualQuestion] = useState<NextQuestion | null>(null);
+  const [llmExplanation, setLlmExplanation] = useState<string | null>(null);
 
   // Load the one shared profile once, on mount (SPEC 3 USP #6: one profile, all schemes).
   // This runs after the server-rendered (empty-profile) markup has hydrated, so it can't
@@ -87,15 +90,51 @@ export default function EligibilityCheckPage() {
 
   const computedQuestion = useMemo(() => {
     if (!scheme) return null;
-    return nextQuestion(scheme, profile, SCHEMES, { fields: skippedFields, custom: skippedCustom });
-  }, [scheme, profile, skippedFields, skippedCustom]);
+    return nextQuestion(scheme, profile, schemeLibrary, { fields: skippedFields, custom: skippedCustom });
+  }, [scheme, profile, schemeLibrary, skippedFields, skippedCustom]);
 
   const currentQuestion = manualQuestion ?? computedQuestion;
   // Early stop: once the verdict is decided or nothing is left to ask, currentQuestion
   // is null and we fall straight through to the result below -- no state needed for that.
   const showWizard = !forceResult && currentQuestion !== null;
 
+  const alternatives = useMemo(() => {
+    if (!scheme) return [];
+    return rankAlternatives(profile, schemeLibrary, scheme.id, 5);
+  }, [scheme, profile, schemeLibrary]);
+
+  // Fetch a nicer LLM-written explanation once per result view (never on each answer,
+  // per SPEC 7.5); the template version below renders instantly and stays as the
+  // fallback if this never resolves. No profile values leave the browser (7.3).
+  useEffect(() => {
+    if (showWizard || !scheme || !evaluation) return;
+    let cancelled = false;
+    // Clear any explanation left over from a previous verdict -- the template fallback
+    // (computed fresh from `evaluation` at render time) covers the gap until this resolves.
+    // eslint-disable-next-line react-hooks/set-state-in-effect -- resetting before a new fetch, not deriving state from props
+    setLlmExplanation(null);
+    const payload = buildExplainPayload(scheme, evaluation, alternatives);
+    fetch('/api/explain', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ summaryPayload: payload, lang }),
+    })
+      .then((res) => (res.ok ? res.json() : null))
+      .then((data: { explanation?: string } | null) => {
+        if (!cancelled && typeof data?.explanation === 'string') setLlmExplanation(data.explanation);
+      })
+      .catch(() => {
+        // Network/LLM failure: the template explanation already rendered, nothing to do.
+      });
+    return () => {
+      cancelled = true;
+    };
+  }, [showWizard, scheme, evaluation, alternatives, lang]);
+
   if (!scheme || !evaluation) {
+    // Not yet checked (could still be an uploaded scheme found in localStorage) -> stay
+    // quiet rather than flashing "not found" for a scheme that's about to appear.
+    if (!checked) return null;
     return (
       <div className="mx-auto max-w-[720px] px-4 py-10 text-center">
         <p className="text-lg text-ink">{t('schemeNotFound')}</p>
@@ -273,8 +312,7 @@ export default function EligibilityCheckPage() {
   const unknown = allResults.filter((r) => r.status === 'UNKNOWN');
   const totalRules = allResults.length;
   const knownRules = allResults.filter((r) => r.status !== 'UNKNOWN').length;
-  const explanation = buildTemplateExplanation(scheme, evaluation, lang);
-  const alternatives = rankAlternatives(profile, SCHEMES, scheme.id, 5);
+  const explanation = llmExplanation ?? buildTemplateExplanation(buildExplainPayload(scheme, evaluation, alternatives), lang);
 
   return (
     <div className="mx-auto max-w-[720px] px-4 pb-16 pt-6">

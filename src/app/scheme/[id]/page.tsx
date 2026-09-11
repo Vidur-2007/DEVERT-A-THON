@@ -3,8 +3,8 @@
 import Link from 'next/link';
 import { useParams } from 'next/navigation';
 import { ArrowLeft } from 'lucide-react';
-import { getScheme } from '@/data/schemes';
 import type { Rule, Scheme } from '@/lib/types';
+import { useSchemeById } from '@/lib/useSchemeLibrary';
 import { useT } from '@/lib/i18n/strings';
 import { BenefitCard } from '@/components/BenefitCard';
 import { SourceDrawer } from '@/components/SourceDrawer';
@@ -30,9 +30,12 @@ function findExclusionForLabel(scheme: Scheme, label: string): Rule | undefined 
 export default function SchemeExplainerPage() {
   const { id } = useParams<{ id: string }>();
   const t = useT();
-  const scheme = getScheme(id);
+  const { scheme, checked } = useSchemeById(id);
 
   if (!scheme) {
+    // Not yet checked (could still be an uploaded scheme found in localStorage) -> stay
+    // quiet rather than flashing "not found" for a scheme that's about to appear.
+    if (!checked) return null;
     return (
       <div className="mx-auto max-w-[720px] px-4 py-10 text-center">
         <p className="text-lg text-ink">{t('schemeNotFound')}</p>
